@@ -20,7 +20,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
+makefile
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -82,5 +82,6 @@ target/
 *.pyc
 __pycache__/
 local_settings.py
+dukamarket
 env/
 .env

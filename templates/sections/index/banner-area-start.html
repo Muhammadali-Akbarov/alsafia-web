@@ -1,0 +1,23 @@
+{% load static %}
+<!-- banner__area-start -->
+    <section class="banner__area pt-20 pb-10">
+        <div class="container">
+            <div class="row">
+                {% for item in image1 %}
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="banner__item p-relative w-img mb-30">
+                            <div class="banner__img">
+                                <a href="product-details.html"><img src="{{item.image4.url}}" alt="{{item.imageURL}}"></a>
+                            </div>
+                            <div class="banner__content">
+                                
+                                <h6><a href="product-details.html">{{item.title}} <br> {{item.mini_body}}</a></h6>
+                                <p>{{item.discount_info}}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- banner__area-end -->

@@ -1,0 +1,1 @@
+sass --watch C:\Users\Admin\Dropbox\Iqbal\dukamarket\assets\scss\main.scss:C:\Users\Admin\Dropbox\Iqbal\dukamarket\assets\css\style.css

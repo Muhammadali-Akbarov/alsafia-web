@@ -1,0 +1,398 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  14. about CSS
+/*----------------------------------------*/
+.about-area{
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.about-content{
+    & span{
+        font-size: 14px;
+        color: $d-yellow;
+        text-transform: uppercase;
+        font-weight: 500;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+    & h4{
+        font-size: 36px;
+        font-weight: 400;
+        line-height: 1.34em;
+        letter-spacing: -0.9px;
+    }
+    & h5{
+        font-size: 36px;
+        line-height: 1.34em;
+        letter-spacing: -0.9px;
+    }
+    & .about-text{
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 30px;
+        color: $black;
+    }
+}
+.about-image{
+    &:hover img{
+        animation-name: bob-float;
+        animation-duration: 1s, 1.5s;
+        animation-delay: 0s, 0.3s;
+        animation-timing-function: ease-out, ease-in-out;
+        animation-iteration-count: 100, infinite;
+        animation-fill-mode: forwards;
+        animation-direction: normal, alternate;
+    }
+    & img{
+        vertical-align: middle;
+        display: inline-block;
+    }
+}
+//servicess
+.services-item{
+    background: $white;
+    padding: 60px 50px 55px 50px;
+    border-radius: 20px;
+    position: relative;
+    & .services-icon{
+        & i{
+            font-size: 55px;
+            color: $d-yellow;
+        }
+    }
+    & h6{
+        font-size: 18px;
+        letter-spacing: -0.5px;
+    }
+    & p{
+        margin-bottom: 0;
+    }
+    .s-count-number{
+        position: absolute;
+        top: 65px;
+        right: 65px;
+        & span{
+            font-size: 60px;
+            color: #F2F4F7;
+            display: inline-block;
+            font-family: $rubik;
+            font-weight: 600;
+        }
+    }
+}
+//ab-counter
+.ab-counter-image{
+    &:hover img{
+        animation-name: bob-float;
+        animation-duration: 1s, 1.5s;
+        animation-delay: 0s, 0.3s;
+        animation-timing-function: ease-out, ease-in-out;
+        animation-iteration-count: 100, infinite;
+        animation-fill-mode: forwards;
+        animation-direction: normal, alternate;
+    }
+    & img{
+        vertical-align: middle;
+        display: inline-block;
+    }
+}
+.ab-counter-item{
+    & .ab-counter{
+        display: flex;
+        align-items: center;
+        & .counter_info{
+            display: flex;
+            align-items: center;
+            position: relative;
+            top: 3px;
+            & span{
+                font-size: 30px;
+                line-height: 1.2em;
+                letter-spacing: -0.7px;
+                display: inline-block;
+                font-weight: 500;
+            }
+            & p{
+                font-size: 30px;
+                line-height: 1.2em;
+                letter-spacing: -0.7px;
+                margin-bottom: 0;
+                color: $black;
+                font-weight: 500;
+            }
+        }
+    }
+    & h5{
+        font-size: 18px;
+        letter-spacing: -0.5px;
+        line-height: 1.4;
+        margin-bottom: 20px;
+    }
+}
+//team-css
+.team-image{
+    &:hover .inner-timg img{
+        transform: scale(1.1);
+    }
+    & .inner-timg{
+        overflow: hidden;
+        border-radius: 50%;
+        width: 260px;
+        height: 260px;
+        margin: 0 auto;
+        & img{
+            transition: .3s;
+        }
+    }
+}
+.tauthor-degination{
+    & h5{
+        font-size: 20px;
+        line-height: 1.4;
+        margin-bottom: 0;
+        text-transform: uppercase;
+    }
+    & span{
+        font-size: 14px;
+        color: $grey-2;
+        display: inline-block;
+    }
+}
+.team-social{
+    & a{ 
+        & i{
+            font-size: 12px;
+            height: 30px;
+            width: 30px;
+            line-height: 28px;
+            border: 1px solid $border;
+            background: $white;
+            border-radius: 50%;
+            display: inline-block;
+            color: $black;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: .3s;
+        }
+        &:hover i{
+            color: $white;
+        }
+        &:hover .fa-facebook-f{
+            background: #3b5998;
+            border-color: #3b5998;
+        }
+        &:hover .fa-twitter{
+            background: #1da1f2;
+            border-color: #1da1f2;
+        }
+        &:hover .fa-dribbble{
+            background: #ea4c89;
+            border-color: #ea4c89;
+        }
+        &:hover .fa-youtube{
+            background: #cd201f;
+            border-color: #cd201f;
+        }
+    }
+}
+.team-text{
+    max-width: 260px;
+    margin: 0 auto;
+}
+//location css
+.location-image{
+    &:hover img{
+        animation-name: bob-float;
+        animation-duration: 1s, 1.5s;
+        animation-delay: 0s, 0.3s;
+        animation-timing-function: ease-out, ease-in-out;
+        animation-iteration-count: 100, infinite;
+        animation-fill-mode: forwards;
+        animation-direction: normal, alternate;
+    }
+    & img{
+        vertical-align: middle;
+        display: inline-block;
+    }
+}
+.location-item{
+    & h6{
+        font-size: 18px;
+        letter-spacing: -0.5px;
+        line-height: 1.4;
+        margin-bottom: 18px;
+    }
+}
+.sm-item-loc{
+    display: flex;
+    & .sml-icon{
+        & i{
+            font-size: 25px;
+            color: $d-yellow;
+        }
+    }
+    .sm-content{
+        position: relative;
+        top: -6px;
+        & span{
+            display: inline-block;
+            color: $grey-2;
+            font-size: 14px;
+        }
+        & p{
+            color: $black;
+            line-height: 14px;
+        }
+    }
+}
+.sm-item-border{
+    border-bottom: 1px solid $border;
+}
+
+//maps css
+.cmamps-area{
+    line-height: 0;
+    & iframe{
+        min-height: 590px;
+        width: 100%;
+    }
+}
+
+// faq-css
+.faq-title{
+    border-bottom: 2px solid $grey-2;
+    & h5{
+        font-size: 20px;
+    }
+}
+.accordion-button {
+    border: 0;
+    font-size: 18px;
+    line-height: 40px;
+    color: $black;
+    padding-left: 0;
+    position: relative;
+}
+.accordion-collapse{
+    border: 0;
+}
+.accordion-button:not(.collapsed) {
+    background: transparent;
+    color: inherit;
+}
+.accordion-body {
+    padding-left: 0;
+    padding-top: 0;
+    & p {
+        font-size: 16px;
+        line-height: 30px;
+    }
+}
+.accordion-item {
+    border-bottom: 1px solid $border;
+    border-left: 0;
+    border-right: 0;
+}
+.accordion-button:focus {
+    box-shadow: none;
+}
+.accordion-button::after{
+    content: "\f067";
+    background-image: none;
+    font-family: $fontawesome;
+    position: absolute;
+    left: 0;
+    right: 10px;
+    top: 20%;
+    @media #{$xs} {
+        right: 5px;
+    }  
+}
+.accordion-button:not(.collapsed)::after{
+    background-image: none;
+    content: '\f068';
+    transform: rotate(0deg);
+}
+// error-content    
+.error-content{
+    & h5{
+        font-size: 48px;
+        line-height: 1.2;
+        margin-bottom: 22px;
+    }
+    & p{
+        font-size: 16px;
+        margin-bottom: 55px;
+    }
+}
+.error-image{
+    & img{
+        @media #{$md,$sm,$xs} {
+            width: 100%;
+        }
+    }
+}
+
+//basic login
+.basic-login{
+    & h5{
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+    & label{
+        margin-bottom: 2px;
+        font-size: 14px;
+        line-height: 24px;
+        color: $black;
+        & span{
+            color: $d-red;
+            display: inline-block;
+        }
+    }
+    & input{
+        width: 100%;
+        height: 45px;
+        border: 1px solid $border;
+        color: $black;
+        padding: 0 20px;
+        margin-bottom: 20px;
+        outline: none;
+        transition: .3s;
+        &::-moz-placeholder {
+            color: $grey-2;
+            font-size: 14px;
+            opacity: 1;
+        }
+        &::placeholder {
+            color: $grey-2;
+            font-size: 14px;
+            opacity: 1;
+        }
+        &:focus{
+            border: 1px solid $d-yellow;
+        }
+    }
+    & .login-action input {
+        width: inherit;
+        height: auto;
+        } 
+    & .login-action label {
+        display: inline-block;
+        margin-left: 5px;
+        }
+    & .forgot-login a{
+        color: $d-blue-light;
+        font-size: 14px;
+        &:hover{
+            color: $d-yellow;
+        }
+    }
+    & .login-action p a{
+        font-style: italic;
+        text-decoration: underline;
+        &:hover{
+            color: $d-yellow;
+        }
+    }
+}

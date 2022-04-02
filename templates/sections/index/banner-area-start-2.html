@@ -1,0 +1,24 @@
+{% load static %}
+<!-- banner__area-start -->
+ <section class="banner__area pt-60 pb-25">
+    <div class="container">
+        <div class="row">
+            {% for item in all_products %}
+            <div class="col-xl-4 col-lg-6 col-md-12">
+                <div class="banner__item p-relative mb-30 w-img">
+                    <div class="banner__img">
+                        <a href="product-details.html"><img src="{{item.image4.url}}" alt=""></a>
+                    </div>
+                    <div class="banner__content banner__content-sd text-center">
+                        <div class="banner-button mb-20">
+                            <a href="product-details.html" class="st-btn">Ommabob</a>
+                        </div>
+                        <h6><a href="product-details.html">Sport Edition <br> Best Choice of The Year</a></h6>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- banner__area-end -->

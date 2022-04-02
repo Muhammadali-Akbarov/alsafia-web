@@ -1,0 +1,35 @@
+@use '../utils' as *;
+/*----------------------------------------*/
+/*    02. background CSS
+/*----------------------------------------*/
+
+.grey-bg {
+	background: $grey;
+}
+
+.white-bg {
+	background:$white;
+}
+
+.black-bg {
+	background: $black;
+}
+
+.d-blue-bg{
+	background-color: $d-blue;
+}
+.d-dark-bg{
+	background-color: $black;
+}
+.d-ldark-bg{
+	background-color: $black-2;
+}
+.d-ddark-bg{
+	background-color: $black-3;
+}
+.light-bg{
+	background-color: $light-bg;
+}
+.light-bg-s{
+	background-color: $light-bg-s;
+}

@@ -1,0 +1,118 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/* 11. slider CSS
+/*----------------------------------------*/
+.slider-height{
+    min-height: 500px;
+}
+.slider-height-2{
+  min-height: 430px;
+}
+.slider-height-3{
+  min-height: 500px;
+}
+.single-slider{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    transition: all 10.5s cubic-bezier(0, 0, 0.2, 1);
+}
+.slider-content{
+    text-align: center;
+    @media #{$lg,$md,$sm,$xs} {
+      text-align: left;
+    }
+    & .slider_text{
+        font-size: 18px;
+        font-weight: 400;
+        color: $white;
+    }
+}
+.slider-content-2{
+  @media #{$sm} {
+    margin-left: 30px;
+  }
+  @media #{$xs} {
+    margin-left: 20px;
+  }
+  text-align: left;
+  margin-left: 90px;
+}
+.slider-title{
+    font-weight: 300;
+    color: $white;
+}
+.main-slider-paginations{
+  @media #{$xs} {
+    display: none;
+  }
+  position: absolute;
+  bottom: 10px;
+  transform: translateY(-55%);
+  align-items: center;
+  z-index: 9;
+  left: 0;
+  right: 0;
+  text-align: center;
+  & .swiper-pagination-bullet{
+    font-size: 0;
+    width: 7px;
+    height: 7px;
+    background: $white;
+    opacity: 0.2;
+    margin: 0 5px;
+  }
+  & .swiper-pagination-bullet-active {
+      position: relative;
+      width: 35px;
+      border-radius: 10px;
+      background: $white;
+      opacity: 1;
+  }
+}
+
+// page-banner
+.page-banner-area{
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  &::before{
+    position: absolute;
+    content: '';
+    background: #0e2641;
+    opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+}
+.page-banner-height{
+  @media #{$md,$lg} {
+    padding: 200px 0;
+  }
+  @media #{$sm,$xs} {
+    padding: 120px 0;
+  }
+  padding: 250px 0;
+}
+.page-banner-height-2{
+  min-height: 360px;
+}
+.page-banner-content{
+  & h3{
+    color: $white;
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 1.17em;
+    letter-spacing: -3px;
+  }
+  & p{
+    color: $white;
+    font-size: 16px;
+  }
+}
