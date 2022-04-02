@@ -1,0 +1,71 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  08. breadcrumb CSS
+/*----------------------------------------*/
+
+.breadcrumb{
+    &__area{}
+    &__wrapper{
+        & .breadcrumb{
+            margin-bottom: 0;
+            padding-top: 35px;
+            padding-bottom: 35px;
+            &-item{
+                font-size: 14px;
+				line-height: 24px;
+                color: $grey-2;
+                &.active{
+                    color: $black-2;
+                }
+            }
+            & .breadcrumb-item + .breadcrumb-item::before {
+                color: $grey-2;
+                content: var(--bs-breadcrumb-divider, "/");
+            }
+        }
+    }
+}
+.breadcrumb-two{
+    & ul{
+        & li{
+            display: inline-block;
+            padding: 0px 8px;
+            position: relative;
+            & a{
+                & span{
+                    font-size: 22px;
+                    line-height: 1.1;
+                    transition: 0.3s;
+                    color: $grey-2;
+                    font-size: 14px;
+                    line-height: 24px;
+                    &:hover{
+                        color: $d-yellow;
+                    }
+                }
+            }
+            & span{
+                color: $white;
+                font-size: 14px;
+                line-height: 24px;
+            }
+        }
+        & li:not(:last-child)::after {
+            position: absolute;
+            color: $grey-2;
+            content: "\f715";
+            font-size: 8px;
+            right: -8px;
+            top: 1px;
+            font-family: "Font Awesome 5 pro";
+            transform: rotate(-110deg);
+        }
+    }
+}
+.breadcrumb-title{
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: -.05em;
+    color: $white;
+}

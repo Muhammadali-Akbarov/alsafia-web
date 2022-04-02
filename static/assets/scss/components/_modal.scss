@@ -1,0 +1,130 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  06. modal CSS
+/*----------------------------------------*/
+.product{
+    &__modal{
+        max-width: 900px;
+        padding: 20px;
+        padding-top: 27px;
+        &-close{
+            top: 15px;
+            right: 15px;
+            z-index: 1;
+            & button{
+                color:$white;
+                display: block;
+                line-height: 36px;
+                text-align: center;
+                background: $d-yellow;
+                width: 38px;
+                height: 38px;
+                @include border-radius(100%);
+                border: 1px solid $d-yellow;
+                outline: none;
+                &:hover{
+                    background: $white;
+                    color: $black;
+                }
+            }
+        }
+        &-wrapper{
+            padding: 20px;
+        }
+        &-content{
+            & h4{
+                font-size: 24px;
+                color: $d-blue-light;
+                font-weight: 500;
+            }
+            & .product__add-review{
+                & span{
+                    font-size: 14px;
+                    color: $grey-2;
+                    line-height: 1.2;
+                    position: relative;
+                    &::before{
+                        position: absolute;
+                        content: '';
+                        background: #e5e5e5;
+                        width: 1px;
+                        height: 13px;
+                        left: -20px;
+                        right: 0;
+                        top: 3px;
+                    }
+                }
+            }
+            & .product__price{
+                & span{
+                    font-size: 24px;
+                    line-height: 1.25;
+                    font-weight: 500;
+                    color: $black;
+                }
+                padding-bottom: 20px;
+                border-bottom: 1px solid #e5e5e5;
+            }
+            & .product__modal-des{
+                & ul{
+                    & li{
+                        display: inline-block;
+                        & a{
+                            font-size: 14px;
+                            color: $grey;
+                            & i{
+                                font-size: 6px;
+                                position: relative;
+                                top: -3px;
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+            & .product__stock{
+                & span{
+                    font-size: 14px;
+                    line-height: 24px;
+                    color: $black;
+                    display: inline-block;
+                }
+            }
+        }
+        &-box{
+            & .nav-tabs{
+                border-bottom: 0;
+            }
+            & .nav-link{
+                padding: 0;
+                @include border-radius(0);
+                border: none;
+            }
+        }
+        & .nav-tabs{
+            border: none;
+            justify-content: space-between;
+        }
+        & .nav-item{
+        }
+        & .nav-link{
+            border: 1px solid $border;
+            position: relative;
+            margin-bottom: 20px;
+            &.active{
+                border-color: $d-yellow;
+                &::after{
+                    position: absolute;
+                    content: '';
+                    top: -12px;
+                    left: 50%;
+                    @include transform(translateX(-50%));
+                    border: 6px solid transparent;
+                    border-top-color: transparent;
+                    border-bottom-color: $d-yellow;
+                }
+            }
+        }
+    }
+}

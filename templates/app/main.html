@@ -1,0 +1,57 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>{% block title %}Alsafia top online shop{% endblock %}</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Place favicon.ico in the root directory -->
+      <link rel="shortcut icon" type="image/x-icon" href="{% static 'icon.png'%}">
+      <!-- CSS here -->
+      <link rel="stylesheet" href="{% static 'assets/css/preloader.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static  'assets/css/meanmenu.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.css' %}">
+      <link rel="stylesheet" href="{% static  'assets/css/backtotop.css' %}">
+      <link rel="stylesheet" href="{% static  'assets/css/magnific-popup.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+      <link rel="stylesheet" href="{% static  'assets/flaticon/flaticon.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/font-awesome-pro.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+   </head>
+   <body>
+    {% include 'preloader/preloader.html' %}
+    {% include 'sections/body/header.html' %}
+
+
+
+        {% block content %}
+        {% endblock content %}
+
+    {% include 'sections/body/footer.html' %}
+    <!-- JS here -->
+    <script src="{% static 'assets/js/vendor/jquery.js' %}"></script>    
+    <script src="{% static 'assets/js/vendor/waypoints.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap-bundle.js' %}"></script>
+    <script src="{% static 'assets/js/meanmenu.js' %}"></script>
+    <script src="{% static 'assets/js/swiper-bundle.js' %}"></script>
+    <script src="{% static 'assets/js/tweenmax.js' %}"></script>
+    <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'assets/js/magnific-popup.js' %}"></script>
+    <script src="{% static 'assets/js/parallax.js' %}"></script>
+    <script src="{% static 'assets/js/backtotop.js' %}"></script>
+    <script src="{% static 'assets/js/nice-select.js' %}"></script>
+    <script src="{% static 'assets/js/countdown.min.js' %}"></script>
+    <script src="{% static 'assets/js/counterup.js' %}"></script>
+    <script src="{% static 'assets/js/wow.js' %}"></script>
+    <script src="{% static 'assets/js/isotope-pkgd.js' %}"></script>
+    <script src="{% static 'assets/js/imagesloaded-pkgd.js' %}"></script>
+    <script src="{% static 'assets/js/ajax-form.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+   </body>
+</html>
