@@ -3,16 +3,14 @@ from .models import Categories, Product, SliderImage
 
 
 def loginView(request):
-    
     return render(request, 'myshop/my-account.html')
-
 
 def homeView(request):
     categories = Categories.objects.all()
     product = Product.objects.all().first
     slider_images = SliderImage.objects.all()[:3] #slider image
-    image1 = Product.objects.filter(category=13) #image1 
-    topsell = Product.objects.filter(category=1) #kunning eng yaxshi takliflari
+    others = Product.objects.all()[:3] #others
+    topsell = Product.objects.filter(category=4) #kunning eng yaxshi takliflari
     product = Product.objects.filter(category=2).first() # eng mashhur mahsulotlar birinchsi
     products = Product.objects.filter(category=11)
     all_products = Product.objects.all()[:6]
@@ -22,7 +20,7 @@ def homeView(request):
         "slider_images": slider_images,
         "categories": categories,
         "product": product,
-        "image1": image1,
+        "image1": others,
         "topsell": topsell,
         "product": product,
         "products": products,
