@@ -2,6 +2,11 @@ from django.shortcuts import render
 from .models import Categories, Product, SliderImage
 
 
+def loginView(request):
+    
+    return render(request, 'myshop/my-account.html')
+
+
 def homeView(request):
     categories = Categories.objects.all()
     product = Product.objects.all().first
@@ -29,8 +34,36 @@ def homeView(request):
 
 
 def aboutView(request):
-    return render(request, 'myshop/about.html')
+    categories = Categories.objects.all()
+    context = {
+        "categories": categories
+    }
+    
+    return render(request, 'myshop/about.html', context)
 
 
 def shopView(request):
-    return render(request, 'myshop/shop.html')
+    categories = Categories.objects.all()
+    context = {
+        "categories": categories
+    }
+     
+    return render(request, 'myshop/shop.html', context)
+
+
+def myWishlistView(request):
+    categories = Categories.objects.all()
+    context = {
+        "categories": categories
+    }
+    
+    return render(request, 'myshop/wishlist.html', context)
+
+
+def myCardView(request):
+    categories = Categories.objects.all()
+    context = {
+        "categories": categories
+    }
+
+    return render(request, 'myshop/cart.html', context)
