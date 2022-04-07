@@ -49,6 +49,15 @@ def shopView(request):
     return render(request, 'myshop/shop.html', context)
 
 
+def shopViewDetail(request, id):
+    item = Product.objects.get(id=id)
+    context = {
+        "item": item
+    }
+    
+    return render(request, 'myshop/shop-detail.html', context)
+
+
 def myWishlistView(request):
     categories = Categories.objects.all()
     context = {
