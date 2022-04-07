@@ -1,0 +1,338 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  04. buttons CSS
+/*----------------------------------------*/
+
+.pulse-btn{
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	background-color: $white;
+	@include border-radius(50%);
+	color: $black;
+	animation: pulse 2s infinite;
+	&:hover{
+		background-color: $black;
+		color: $white;
+	}
+	& i{
+		padding-left: 2px;
+	}
+}
+.wc-cart{
+	display: inline-block;
+	width: 100%;
+	background: $d-yellow;
+	color: $white;
+	padding: 10px  0;
+	font-size: 16px;
+	text-align: center;
+	font-weight: 500;
+	border: 1px solid transparent;
+	transition: .3s;
+	&:hover{
+		color: #222;
+		background: transparent;
+		border: 1px solid $border;
+	}
+}
+.wc-checkout{
+	display: inline-block;
+	width: 100%;
+	background: transparent;
+	border: 1px solid $border;
+	color: #222;
+	padding: 10px  0;
+	font-size: 16px;
+	text-align: center;
+	font-weight: 500;
+	transition: .3s;
+	&:hover{
+		background: $d-yellow;
+		color: $white;
+		color: #222;
+		border-color: $d-yellow;
+	}
+}
+.wc-checkout{
+	display: inline-block;
+	width: 100%;
+	background: transparent;
+	border: 1px solid $border;
+	color: $grey;
+	padding: 10px  0;
+	font-size: 13px;
+	font-weight: 500;
+	text-align: center;
+	text-transform: uppercase;
+	transition: .3s;
+	&:hover{
+		background: $d-yellow;
+		color: $white;
+		color: #222;
+		border-color: $d-yellow;
+	}
+}
+.st-btn{
+	font-size: 13px;
+	font-weight: 500;
+	padding: 2px  15px;
+	background-color:$d-yellow;
+	color: $black;
+	display: inline-block;
+	text-transform: uppercase;
+	&:hover{
+		background-color:$white;
+		color: $black;
+	}
+}
+.st-btn-b{
+	font-size: 13px;
+	font-weight: 500;
+	padding: 12px 52px;
+	background-color:$white;
+	color: $black;
+	display: inline-block;
+	text-transform: uppercase;
+	&:hover{
+		background-color:$d-yellow;
+		color: $black;
+	}
+}
+.st-btn-4{
+	font-size: 13px;
+	font-weight: 500;
+	padding: 12px 52px;
+	background-color:$d-yellow;
+	color: $black;
+	display: inline-block;
+	text-transform: uppercase;
+	border-radius: 2px;
+	&:hover{
+		background-color:$white;
+		color: $black;
+	}
+}
+.st-btn-d{
+	font-size: 13px;
+	font-weight: 500;
+	padding: 12px 52px;
+	background-color:$d-yellow;
+	color: $black;
+	display: inline-block;
+	text-transform: uppercase;
+	&:hover{
+		background-color:$white;
+		color: $black;
+	}
+}
+.st-btn-border{
+	font-size: 13px;
+	font-weight: 500;
+	padding: 10px 52px;
+	background-color: transparent;
+	color: $white;
+	border: 2px solid $white;
+	border-radius: 30px;
+	display: inline-block;
+	text-transform: uppercase;
+	&:hover{
+		background-color:$white;
+		color: $black;
+		border-color: $white;
+	}
+}
+.st-btn-border-2{
+	font-size: 13px;
+	font-weight: 500;
+	padding: 10px 25px;
+	background-color: transparent;
+	color: $white;
+	border: 2px solid $white;
+	display: inline-block;
+	text-transform: uppercase;
+	&:hover{
+		background-color:$white;
+		color: $black;
+		border-color: $white;
+	}
+}
+.cart-btn{
+	font-size: 13px;
+	font-weight: 500;
+	padding: 9px 30px;
+	background-color:$d-yellow;
+	color: $black;
+	display: inline-block;
+	border: 1px solid transparent;
+	text-transform: uppercase;
+	text-align: center;
+	&:hover{
+		border: 1px solid $border;
+		background-color:$white;
+		color: $black;
+	}
+}
+.cart-btn-3{
+	font-size: 13px;
+	font-weight: 500;
+	padding: 10px 40px;
+	background-color:$s-blue;
+	color: $white;
+	display: inline-block;
+	border: 1px solid transparent;
+	text-transform: uppercase;
+	text-align: center;
+	border-radius: 30px;
+	&:hover{
+		border-color: $s-blue;
+		background-color:$s-blue;
+		color: $white;
+	}
+}
+.cart-btn-4{
+	font-size: 13px;
+	font-weight: 500;
+	padding: 6px 40px;
+	background-color:$s-blue;
+	color: $white;
+	display: inline-block;
+	border: 1px solid transparent;
+	text-transform: uppercase;
+	text-align: center;
+	border-radius: 30px;
+	&:hover{
+		border-color: $s-blue;
+		background-color:$s-blue;
+		color: $white;
+	}
+}
+.st-btn-3{
+	font-size: 14px;
+	font-weight: 400;
+	text-transform: capitalize;
+	background-color: $white;
+	padding: 8px 44px 8px 44px;
+	color: $t-green;
+	display: inline-block;
+	transition: .3s;
+	&:hover{
+		background-color:$d-yellow;
+		color: $black;
+	}
+}
+.cart-btn-2{
+	font-size: 13px;
+	font-weight: 500;
+	padding: 6px 12px;
+	background-color:$d-yellow;
+	color: $black;
+	display: inline-block;
+	border: 1px solid transparent;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 30px;
+	&:hover{
+		border: 1px solid $border;
+		background-color:$white;
+		color: $black;
+	}
+}
+.transperant-btn{
+	font-size: 15px;
+	font-weight: 500;
+	padding: 6px 12px;
+	background-color: transparent;
+	color: $black;
+	display: inline-block;
+	border: 1px solid $border;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 30px;
+	&:hover{
+		border: 1px solid $border;
+		background-color:$d-yellow;
+		color: $black;
+	}
+}
+.transperant-btn-2{
+	font-size: 15px;
+	font-weight: 500;
+	padding: 6px 12px;
+	border-radius: 50%;
+	background-color: transparent;
+	color: $black;
+	display: inline-block;
+	border: 1px solid $border;
+	text-transform: uppercase;
+	text-align: center;
+	&:hover{
+		border: 1px solid $s-blue;
+		background-color:$s-blue;
+		color: $white;
+	}
+}
+.error-btn{
+	font-size: 13px;
+	font-weight: 500;
+	padding: 12px 52px;
+	background-color:$d-yellow;
+	color: $black;
+	display: inline-block;
+	text-transform: uppercase;
+	border-radius: 2px;
+	border: 1px solid transparent;
+	text-align: center;
+	&:hover{
+		background-color:$white;
+		border-color: $d-yellow;
+		color: $black;
+	}
+}
+.tp-in-btn{
+	font-size: 13px;
+	font-weight: 500;
+	padding: 8px 52px;
+	background-color:$d-yellow;
+	color: $black;
+	display: inline-block;
+	text-transform: uppercase;
+	border-radius: 2px;
+	border: 1px solid transparent;
+	text-align: center;
+	&:hover{
+		background-color:$white;
+		border-color: $d-yellow;
+		color: $black;
+	}
+}
+.tp-btn-h1 {
+	background: $d-yellow;
+	border: medium none;
+	color: #ffffff;
+	cursor: pointer;
+	border-radius: 0;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: 3px;
+	line-height: 1;
+	margin-bottom: 0;
+	padding: 20px 40px;
+	text-align: center;
+	text-transform: capitalize;
+	touch-action: manipulation;
+	transition: 0.3s;
+	vertical-align: middle;
+	white-space: nowrap;
+	border: 1px solid transparent;
+	letter-spacing: 0;
+	&:hover{
+		background: #ffffff;
+		color: $black;
+		border-color: $d-yellow;
+	}
+}

@@ -1,0 +1,77 @@
+ {% load static %}
+ <!-- recomand-product-area-start -->
+ <section class="recomand-product-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section__head d-flex justify-content-between mb-10">
+                    <div class="section__title">
+                        <h5 class="st-titile">Siz uchun tavsiya</h5>
+                    </div>
+                    <div class="button-wrap">
+                        <a href="shop.html">Barcha mahsulotlari ko'rish <i class="fal fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            {% for item in recommand_products %}
+            <div class="product-bs-slider-2">
+                <div class="col-xl-3 col-lg-3 col-md-4">
+                    <div class="swiper-wrapper">
+                        <div class="product__item mb-20 swiper-slide">
+                            <div class="product__thumb fix">
+                                <div class="product-image w-img">
+                                    <a href="product-details.html">
+                                        <img src="{{product.image4.url}}" alt="product">
+                                    </a>
+                                </div>
+                                <div class="product__offer">
+                                <span class="discount">-15%</span>
+                                </div>
+                                <div class="product-action">
+                                    <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                        <i class="fa fa-eye"></i>
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    <a href="#" class="icon-box icon-box-1">
+                                        <i class="fa fa-heart"></i>
+                                        <i class="fa fa-heart"></i>
+                                    </a>
+                                    <a href="#" class="icon-box icon-box-1">
+                                        <i class="fa fa-layer-group"></i>
+                                        <i class="fa fa-layer-group"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="product__content">
+                                <h6><a href="product-details.html">{{item.name}}</a></h6>
+                                <div class="rating mb-5">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    </ul>
+                                    <span>(99 reviews)</span>
+                                </div>
+                                <div class="price">
+                                    <span>{{item.price}}</span>
+                                </div>
+                            </div>
+                            <div class="product__add-cart text-center">
+                                <button type="button" class="cart-btn product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
+                                Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- recomand-product-area-end -->

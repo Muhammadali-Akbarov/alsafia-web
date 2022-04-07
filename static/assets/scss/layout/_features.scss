@@ -1,0 +1,502 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  12. features CSS
+/*----------------------------------------*/
+
+//features-1
+.features{
+    &__area{}
+    &__inner{
+      border: 1px solid $border;
+    }
+    &__wrapper{
+      border: 1px solid $border;
+    }
+    &__item{
+        padding: 40px;
+        position: relative;
+        @media #{$xl} {
+            padding: 40px 20px;
+        }
+        @media #{$lg} {
+            padding: 40px 10px;
+        }
+        &::after{
+            position: absolute;
+            content: '';
+            right: 25px;
+            top: 50%;
+            @include transform(translateY(-50%));
+            width: 1px;
+            height: 50%;
+            background: $border;
+            @media #{$lg} {
+                right: 0px;
+            }
+            @media #{$xs} {
+                display: none;
+            }
+        }
+        &-last{
+            &::after{
+                display: none;
+            }
+        }
+    }
+    &__icon{
+        & i{
+            font-size: 40px;
+            color: $d-yellow;
+        }
+    }
+    &__content{
+        & h6{
+            font-size: 13px;
+            line-height: 1.4;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        & p{
+            font-size: 13px;
+            line-height: 1.4em;
+            margin-bottom: 0;
+        }
+    }
+}
+//features-2
+.features-2{
+    &__area{}
+    &__lists{
+        border-bottom: 1px solid #FFFFFF1A;
+    }
+    &__item{
+        padding: 20px 30px;
+        position: relative;
+        display: flex;
+    }
+    &__icon{
+        & i{
+            font-size: 40px;
+            color: $s-blue;
+        }
+    }
+    &__content{
+        & h6{
+            font-size: 13px;
+            line-height: 1.4;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: $white;
+        }
+        & p{
+            font-size: 13px;
+            line-height: 1.4em;
+            margin-bottom: 0;
+            color: $grey-2;
+        }
+    }
+}
+
+//banner
+.banner{
+    &__area{}
+    &__area-d{
+        margin-top: -35px;
+    }
+    &__item{
+        &:hover .banner__img img{
+            transform: scale(1.1);
+        }
+    }
+    &__img{
+        overflow: hidden;
+        & img{
+            min-height: 200px;
+            transition: all 0.3s ease-out 0s;
+        }
+    }
+    &__img-2{
+        & img{
+            @media #{$xl} {
+                min-height: 235px;
+            }
+        }
+    }
+    &__img-3{
+        & img{
+            @media #{$xl} {
+                min-height: 500px;
+            }
+        }
+    }
+    &__content{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 30px 40px 30px 40px;
+        @media #{$xs} {
+            padding: 25px 20px 25px 20px;
+        }
+        & span{
+            font-size: 16px;
+            color: $d-yellow;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        & h6{
+            color: $white;
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 1.25em;
+            letter-spacing: -0.6px;
+            margin-bottom: 20px;
+            @media #{$xs} {
+                font-size: 20px;
+            }
+            &:hover{
+                color: $d-yellow;
+            }
+        }
+        & p{
+            color: $white;
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom:0;
+        }
+        & .sm-p{
+            font-size: 18px;
+        }
+    }
+    &__content-2{
+        & h6{
+            transition: .3s;
+            & br{
+                @media #{$xs} {
+                    display: none;
+                }
+            }
+            &:hover{
+                color: $white;
+                text-decoration: underline;
+            }
+        }
+    }
+    &__content-3{
+        position: absolute;
+        top: 10%;
+        left: 0;
+        right: 0;
+        text-align: center;
+        transform: translateY(0%);
+        padding: 0;
+        & p{
+            font-size: 18px;
+        }
+        & h6{
+            font-size: 26px;
+            line-height: 1.4em;
+            &:hover{
+                color: $s-blue;
+            }
+        }
+        & .df-title:hover{color: $d-yellow;}
+        & .bottom-btn {
+            @media #{$xs} {
+                bottom: -190%;
+            }
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -215%;
+        }
+    }
+    &__content-sd{
+        top: 110px;
+        padding: 0 40px;
+        left: 0;
+        right: 0;
+        @media #{$xl} {
+            top: 85px;
+        }
+        @media #{$md} {
+            top: 170px;
+        }
+        @media #{$xs} {
+            top: 80px;
+        }
+        & h6{
+            @media #{$xs} {
+                font-size: 18px;
+            }
+            color: $white;
+            font-size: 26px;
+            font-weight: 400;
+            line-height: 1.25em;
+            letter-spacing: -0.6px;
+            margin-bottom: 5px;
+            &:hover{
+                color: $d-yellow;
+            }
+        }
+    }
+}
+
+//count-down
+.offer-time{
+    display: flex;
+    align-items: center;
+    & .offer-title{
+        font-size: 16px;
+        line-height: 24px;
+        margin-inline-end: 25px;
+        display: inline-block;
+        font-weight: 500;
+        color: $black;
+    }
+}
+.countdown-inner {
+        background-color: $d-red;
+        display: block;
+        padding: 8px 0;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        & ul {
+            & li {
+                list-style: none;
+                font-size: 12px;
+                color: $border;
+                display: inline-block;
+                padding: 0 24px;
+                position: relative;
+                text-transform: uppercase;
+                @media #{$md} {
+                    padding: 0 10px;
+                }
+                @media #{$xs} {
+                    padding: 0 18px;
+                }
+                & span {
+                    display: block;
+                    line-height: 1;
+                    font-weight: 500;
+                    font-size: 16px;
+                }
+            }
+        }
+}
+
+//brand
+.brand-area-d{
+    margin-top: -55px;
+    position: relative;
+}
+.brand-slider{
+    border-top:  1px solid $border;
+}
+.brand-slider-2{
+    border-top: 0;
+    background: $white;
+    border-radius: 20px;
+}
+.brand-item{
+    &:hover img{
+        animation: bounceIn 0.5s ease;
+    }
+}
+
+//Brand animation
+@keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+}
+@keyframes bounceIn {
+0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+    }
+    20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+    }
+    40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+    }
+    60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+    }
+    100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    }
+}
+
+//cta-area
+.cta-item{
+    margin-right: 50px;
+    @media #{$lg,$md,$sm,$xs} {
+        margin-right: 0;
+    }
+    & .cta-title{
+        font-size: 18px;
+        letter-spacing: -0.45px;
+        line-height: 1.2;
+        color: $white;
+    }
+    & p{
+        color: $grey-2;
+    }
+}
+.cta-item-d{
+    margin-right: 60px;
+    @media #{$lg,$md,$sm,$xs} {
+        margin-right: 0;
+    }
+}
+.subscribe__form{
+    position: relative;
+    width: 100%;
+    & input{
+        width: 100%;
+        height: 45px;
+        line-height: 41px;
+        padding-left: 20px;
+        padding-right: 130px;
+        border: 0;
+        color: $black;
+        background: $white;
+        border-radius: 3px;
+        border: 1px solid transparent;
+        &::placeholder{
+            color: #979ca5;
+            font-size: 14px;
+        }
+    }
+    & button{
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 45px;
+        line-height: 45px;
+        background: $d-yellow;
+        color: $black;
+        text-transform: uppercase;
+        padding: 0 25px;
+        border: 0;
+        border-radius: 0 3px 3px 0;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 500;
+    }
+}
+.apps-store{
+    & a{
+        margin-right: 20px;
+        margin-bottom: 10px;
+        display: inline-block;
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}
+//soical -icon
+.social-icon{
+    & a{
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+        background-color: #666;
+        color: $white;
+        display: inline-block;
+        text-align: center;
+        border-radius: 3px;
+        margin-right: 6px;
+        margin-bottom: 10px;
+        &:last-child{
+            margin-right: 0;
+        }
+        &:hover{
+            background-color: $d-yellow;
+            color: $black;
+        }
+    }
+    & .facebook{
+        background-color: #3b5998;
+    }
+    & .twitter{
+        background-color: #1da1f2;
+    }
+    & .youtube{
+        background-color: #cd201f;
+    }
+    & .linkedin{
+        background-color: #0077b5;
+    }
+    & .rss{
+        background-color: #f26522;
+    }
+
+    & .dribbble{
+        background-color: #ea4c89;
+    }
+}
+.social-icon-2{
+    & a{
+        &:hover{
+            background-color: $s-blue;
+            color: $white;
+        }
+    }
+}
+
+//categories
+.categories{
+    &__area{}
+    &__item{
+        &:hover .categories__img img{
+            transform: scale(1.1);
+        }
+    }
+    &__img{
+        overflow: hidden;
+        & img{
+            min-height: 140px;
+            transition: all 0.3s ease-out 0s;
+        }
+    }
+    &__content{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0 30px;
+        & h6{
+            color: $white;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: -.025em;
+            margin-bottom: 5px;
+            &:hover{
+                color: $s-blue;
+            }
+        }
+        & p{
+            color: $white;
+            letter-spacing: -.025em;
+            opacity: .6;
+            font-weight: 400;
+            margin-bottom:0;
+            font-size: 14px;
+        }
+    }
+}

@@ -1,0 +1,85 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  07. section-title CSS
+/*----------------------------------------*/
+.section{
+	&__head{
+		align-items: center;
+		position: relative;
+		@media #{$xs} {
+			display: block !important;
+		}
+		&::before{
+			position: absolute;
+			content: '';
+			width: 100%;
+			height: 1px;
+			background: $border;
+			bottom: 0;
+		}
+	}
+	&__title{
+		@media #{$xs} {
+			margin-bottom: 50px;
+		}
+		margin-bottom: 6px;
+		& h5{
+			font-size: 24px;
+			font-weight: 500;
+			margin-bottom: 0;
+            position: relative;
+            margin-bottom: 10px;
+			@media #{$md,$sm,$xs} {
+				font-size: 18px;
+			}
+            &::after{
+                position: absolute;
+                content: '';
+                bottom: -17px;
+                left: 0;
+                height: 2px;
+                width: 100%;
+                background: $d-yellow;
+            }
+		}
+		& .st-titile-d{
+			margin-bottom: -22px;
+			&::after{
+                bottom: -10px;
+				@media #{$md} {
+					bottom: -13px;
+				}
+            }
+		}
+	}
+	&__title-2{
+		& h5{
+			&:after{
+				background: $s-blue;
+			}
+		}
+	}
+}
+.abs-section-title{
+    & span{
+        font-size: 14px;
+        color: $d-yellow;
+        text-transform: uppercase;
+        font-weight: 500;
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+    & h4{
+        font-size: 36px;
+        line-height: 1.34em;
+        letter-spacing: -0.9px;
+    }
+	& p{
+        & br{
+            @media #{$md,$sm,$xs} {
+                display: none;
+            }
+        }
+    }
+}

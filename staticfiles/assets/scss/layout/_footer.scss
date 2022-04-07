@@ -1,0 +1,291 @@
+@use '../utils' as *;
+/*----------------------------------------*/
+/*  18. footer CSS
+/*----------------------------------------*/
+
+.footer{
+    &__widget{
+        margin-bottom: 40px;
+        &-title{
+            & h4{
+                font-size: 18px;
+                color: $white;
+                text-transform: capitalize;
+                margin-bottom: 18px;
+                font-weight: 500;
+            }
+            &-2{
+                & h4{
+                    color: $white;
+                }
+            }
+            &-4{
+                & h4{
+                    color: $black-2;
+                }
+            }
+        }
+        &-content{
+            & p{
+                color: $grey-2;
+                & br{
+                    @media #{$xs} {
+                        display: none;
+                    }
+                }
+            }
+            & .provide-text {
+                & a{
+                    text-decoration: underline;
+                    font-style: italic;
+                    &:hover{
+                        color: $s-blue;
+                    }
+                }
+            }
+        }
+    }
+    &__hotline{
+        & .icon{
+            & i{
+                font-size:55px;
+                color: $d-yellow;
+            }
+        }
+        & .icon-2{
+            & i{
+                color: $s-blue;
+            }
+        }
+        & .text{
+            & h4{
+                font-size: 14px;
+                color: $grey-2;
+                margin-bottom: 0;
+            }
+            & span{
+                font-size: 18px;
+                font-weight: 500;
+                color: $d-yellow;
+            }
+        }
+        & .text-2{
+            & span{
+                color: $s-blue;
+            }
+        }
+        &-4{
+            & .icon{
+                & i{
+                    color: $white;
+                }
+            }
+            & .text{
+                & span{
+                    color: $white;
+                }
+            }
+        }
+    }
+    &__info{
+        & ul{
+            & li{
+                margin-bottom: 5px;
+                & span{
+                    @media #{$lg} {
+                        font-size: 13px;
+                    }
+                    font-size: 14px;
+                    color: $grey-2;
+                }
+            }
+        }
+        &-4{
+            & ul{
+                & li{
+                    & span{
+                        color: $black-2;
+                    }
+                }
+            }
+        }
+    }
+    &__link{
+        & ul{
+            & li{
+                margin-bottom: 8px;
+                & a{
+                    color: $grey-2;
+                    font-size: 14px;
+                    @media #{$lg} {
+                        font-size: 13px;
+                    }
+                    &:hover{
+                        color: $d-yellow;
+                        padding-left: 5px;
+                    }
+                }
+            }
+        }
+        &-2{
+            & ul{
+                & li{
+                    & a{
+                        color: $black-2;
+                    }
+                }
+            }
+        }
+        &-4{
+            & ul{
+                & li{
+                    & a{
+                        color: $black-2;
+                        &:hover{
+                            color: $d-red;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &__link-2{
+        & ul li {
+            & a{
+               color: $grey-2;
+                &:hover{
+                color: $s-blue;
+                }
+            }
+        }
+    }
+    &__links{
+        & p{
+            margin-bottom: 0;
+            & br{
+                @media #{$lg,$md,$sm,$xs} {
+                    display: none;
+                }
+            }
+            & a{
+                color: $grey-2;
+                font-size: 14px;
+                padding: 0 10px;
+                position: relative;
+                &::before{
+                    content: '/';
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    opacity: 0.2;
+                    transform: translateX(50%);
+                    color: $grey-2;
+                    top: -3px;
+                }
+                &:hover{
+                    color: $d-yellow;
+                }
+                &:last-child{
+                    &::before{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    &__links-d{
+        & p{
+            & a{
+                &::before{
+                    content: "|";
+                }
+                &:hover{
+                    color: $s-blue;
+                }
+            }
+        }
+    }
+    &__bottom-content{
+        border-top: 1px solid #FFFFFF1A;
+    }
+    &__bottom-content-2{
+        border-top: 0;
+    }
+    &__newsletter-form{
+        position: relative;
+        & .ft-newsl{
+            width: 100%;
+            height: 50px;
+            background-color: $white;
+            position: relative;
+            z-index: 1;
+            font-size: 13px;
+            padding: 10px 20px;
+            border-radius: inherit;
+            box-shadow: none ;
+            border: 1px solid transparent;
+            border-radius: 2px;
+            padding-right: 140px;
+            transition: .3s;
+            &:focus{
+                border: 1px solid $s-blue;
+            }
+            &::-moz-placeholder {
+                color: $grey;
+                font-size: 13px;
+                opacity: 1;
+            }
+            &::placeholder {
+                color: $grey;
+                font-size: 13px;
+                opacity: 1;
+            }
+        }
+        & .ft-newsl-btn{
+            position: absolute;
+            background: $s-blue;
+            color: $white;
+            padding: 12px 32px;
+            font-size: 13px;
+            right: 0px;
+            z-index: 2;
+            text-transform: uppercase;
+            font-weight: 500;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+    }
+    &__bottom-2{
+        border-top: 1px solid #FFFFFF1A;
+    }
+}
+.footer-col-2{
+    margin-left: 30px;
+    @media #{$md,$sm,$xs} {
+        margin-left: 0;
+    }
+}
+.copy-right-area{
+    & p{
+        color: $grey-2;
+        & span{
+            color: $d-yellow;
+            display: inline-block;
+        }
+    }
+}
+.copy-right-area-2{
+    & p{
+        & span{
+            color: $s-blue;
+        }
+    }
+}
+.payment-image{
+    & img{
+        @media #{$xs} {
+            width: 100%;
+        }
+        width: auto;
+    }
+}

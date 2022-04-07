@@ -37,19 +37,16 @@ label {
 
 /* RADIO BUTTONS */
 
-form div.radiolist div {
-    padding-right: 7px;
+form ul.radiolist li {
+    list-style-type: none;
 }
 
-form div.radiolist.inline div {
-    display: inline-block;
+form ul.radiolist label {
+    float: none;
+    display: inline;
 }
 
-form div.radiolist label {
-    width: auto;
-}
-
-form div.radiolist input[type="radio"] {
+form ul.radiolist input[type="radio"] {
     margin: -2px 4px 0 0;
     padding: 0;
 }
@@ -87,7 +84,6 @@ form ul.inline li {
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 170px;
-    overflow-wrap: break-word;
 }
 
 .aligned ul label {
@@ -109,7 +105,7 @@ form .aligned ul {
     padding-left: 10px;
 }
 
-form .aligned div.radiolist {
+form .aligned ul.radiolist {
     display: inline-block;
     margin: 0;
     padding: 0;
