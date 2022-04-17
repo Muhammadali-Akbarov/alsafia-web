@@ -43,16 +43,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # localapps
+
+    # thirt-part-apps
+    "debug_toolbar",
+
+    # local-apps
     'myshop',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    
-    'whitenoise.middleware.WhiteNoiseMiddleware', # new
-    
+
+    # thiry-part-apps
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # new
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # new
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -60,6 +65,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 
 ROOT_URLCONF = 'configs.urls'
 
@@ -88,6 +99,53 @@ WSGI_APPLICATION = 'configs.wsgi.application'
 DATABASES = {
     "default": env.dj_db_url("DATABASE_URL")
 }
+
+# logging settings
+
+LOGFILE_PATH = env.str('LOGFILE_PATH', BASE_DIR)
+LOG_LEVEL = env.str('LOG_LEVEL', 'INFO')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+        },
+    },
+
+    'handlers': {
+        'file': {
+            'filename': LOGFILE_PATH + 'billingapi.log',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'maxBytes': 20 * 1024 * 1024,  # 20MB
+            'backupCount': 5,
+            'formatter': 'standard',
+            'encoding': 'utf-8'
+        }
+    },
+    'loggers': {
+        # Catch all logs from all packages
+        'paycom': {
+            'level': LOG_LEVEL,
+            'handlers': ['file'],
+            'propagate': False,
+        },
+        'core': {
+            'level': LOG_LEVEL,
+            'handlers': ['file'],
+            'propagate': False,
+        },
+        'django': {
+            'level': LOG_LEVEL,
+            'handlers': ['file'],
+            'propagate': True,
+        },
+    },
+}
+
+# caching sys params
+CACHE_TTL = 60 * 10
 
 
 # Password validation
@@ -124,11 +182,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 STATIC_URL = '/static/'
-STATIC_ROOT = str(BASE_DIR.joinpath('static')) # new statis root bu nginx uchun ko'rsatiladigan joy!
-STATICFILES_DIRS=[]
+# new statis root bu nginx uchun ko'rsatiladigan joy!
+STATIC_ROOT = str(BASE_DIR.joinpath('static'))
+STATICFILES_DIRS = []
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media') # yangi yuklanagan rasmlar qayerga tushishini ifodalash uchun ishlatiladi  
+# yangi yuklanagan rasmlar qayerga tushishini ifodalash uchun ishlatiladi
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

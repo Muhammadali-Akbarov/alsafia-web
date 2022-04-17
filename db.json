@@ -1,0 +1,177 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$260000$j2GwpTOHgKO2qzyD8GAfNp$ys1vWUxniPRODSoHI62nAMzI+q6FoyduuS0M2r4e8s4=",
+        "last_login": "2022-04-17T02:41:14.186Z",
+        "is_superuser": true,
+        "username": "muhammadali",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-04-17T02:41:01.100Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "s1oisvdj1zuzs76p2pu39fg98dgvpt4r",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSEMb1y69xvIAINUDU1KuzL-uzbpQrf3nHNfLOK2trgNWuJU2JkBO_1uCfOD-g7KHftt5nnu6zIlviv8oINf50LPy-H-HTQc7Vt7LalWSCBJGYneZEeUvbLCh1QJhSThlKnKJasNQCDU1gD6JAVUHdj7A-FQN28:1nfuqg:HL_Kof5AU019hl5dKh68Fx0YcpsZrOqUuWsowZfrlJI",
+        "expire_date": "2022-05-01T02:41:14.191Z"
+    }
+},
+{
+    "model": "myshop.categories",
+    "pk": 1,
+    "fields": {
+        "name": "Eng ko'p sotiladigan"
+    }
+},
+{
+    "model": "myshop.categories",
+    "pk": 2,
+    "fields": {
+        "name": "TOP 10"
+    }
+},
+{
+    "model": "myshop.categories",
+    "pk": 3,
+    "fields": {
+        "name": "Yangilar"
+    }
+},
+{
+    "model": "myshop.categories",
+    "pk": 4,
+    "fields": {
+        "name": "Kun takliflari"
+    }
+},
+{
+    "model": "myshop.categories",
+    "pk": 5,
+    "fields": {
+        "name": "Siz uchun tavfsiya"
+    }
+},
+{
+    "model": "myshop.categories",
+    "pk": 6,
+    "fields": {
+        "name": "Boshqalar"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2022-04-17T02:41:55.190Z",
+        "user": [
+            "muhammadali"
+        ],
+        "content_type": [
+            "myshop",
+            "categories"
+        ],
+        "object_id": "1",
+        "object_repr": "Eng ko'p sotiladigan",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2022-04-17T02:42:08.762Z",
+        "user": [
+            "muhammadali"
+        ],
+        "content_type": [
+            "myshop",
+            "categories"
+        ],
+        "object_id": "2",
+        "object_repr": "TOP 10",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2022-04-17T02:42:22.813Z",
+        "user": [
+            "muhammadali"
+        ],
+        "content_type": [
+            "myshop",
+            "categories"
+        ],
+        "object_id": "3",
+        "object_repr": "Yangilar",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2022-04-17T02:42:40.031Z",
+        "user": [
+            "muhammadali"
+        ],
+        "content_type": [
+            "myshop",
+            "categories"
+        ],
+        "object_id": "4",
+        "object_repr": "Kun takliflari",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2022-04-17T02:42:55.692Z",
+        "user": [
+            "muhammadali"
+        ],
+        "content_type": [
+            "myshop",
+            "categories"
+        ],
+        "object_id": "5",
+        "object_repr": "Siz uchun tavfsiya",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2022-04-17T02:43:07.984Z",
+        "user": [
+            "muhammadali"
+        ],
+        "content_type": [
+            "myshop",
+            "categories"
+        ],
+        "object_id": "6",
+        "object_repr": "Boshqalar",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}
+]
