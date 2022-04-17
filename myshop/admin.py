@@ -1,11 +1,8 @@
 from django.contrib import admin
 
-from .models import (Product, Categories, 
-                    Reviews, SliderImage
-                    )
+from myshop.models.products import Products
+from myshop.models.categories import Categories
 
 
-admin.site.register(Product)
+admin.site.register(Products)
 admin.site.register(Categories)
-admin.site.register(Reviews)
-admin.site.register(SliderImage)
