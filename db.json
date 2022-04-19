@@ -67,6 +67,7 @@
     }
 },
 {
+<<<<<<< HEAD
     "model": "myshop.products",
     "pk": 1,
     "fields": {
@@ -235,6 +236,8 @@
     }
 },
 {
+=======
+>>>>>>> c4fbc071209c3365781b38580610e16e397bf28c
     "model": "admin.logentry",
     "pk": 1,
     "fields": {
@@ -341,6 +344,7 @@
         "action_flag": 1,
         "change_message": "[{\"added\": {}}]"
     }
+<<<<<<< HEAD
 },
 {
     "model": "admin.logentry",
@@ -593,5 +597,7 @@
         "action_flag": 2,
         "change_message": "[{\"changed\": {\"fields\": [\"450x200\"]}}]"
     }
+=======
+>>>>>>> c4fbc071209c3365781b38580610e16e397bf28c
 }
 ]
