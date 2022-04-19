@@ -18,3 +18,5 @@ copydata:
 
 loaddata:
 	python3 manage.py loaddata db.json
+
+release: python manage.py loaddata db.json
