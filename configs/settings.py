@@ -102,7 +102,7 @@ DATABASES = {
 
 # logging settings
 
-LOGFILE_PATH = env.str('LOGFILE_PATH', BASE_DIR)
+LOGFILE_PATH = "./"
 LOG_LEVEL = env.str('LOG_LEVEL', 'INFO')
 
 LOGGING = {
