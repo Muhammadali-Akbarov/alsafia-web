@@ -9,6 +9,7 @@ class Categories(models.Model):
     KUN_TAKLIFLARI=4
     SIZ_UCHUN_TAVFSIYA=5
     BOSHQALAR=6
+    ENG_MASHHUR_MAHSULOTLAR=7
     
     name = models.CharField(max_length=30, null=True, blank=False)
     # sid  = models.CharField(max_length=2, null=True, blank=True)

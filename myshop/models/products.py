@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth import get_user_model
@@ -15,11 +16,17 @@ class Products(models.Model):
         verbose_name="Chegirma", default=0, blank=True)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     image_450_200 = models.ImageField(
-        verbose_name='450x200', blank=True, default="default/banner-1.jpg")
+        verbose_name='450x200', blank=True, default="images/banner_1.jpg")
+    image_330x330 = models.ImageField(
+        verbose_name="330x330", blank=True, default='images/fpb_1.jpg'
+    )
+    image_135x135 = models.ImageField(
+        verbose_name="135x135", blank=True, default='images/135x135.jpg'
+    )
     
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-
+    
     @property
     def imageURL(self):
         """This function for to fix images url"""

@@ -55,6 +55,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="col-md-6">
                 <div class="product__content product__content-d">
                   <h6>
@@ -126,8 +127,12 @@
             </div>
           </div>
         </div>
+
         <div class="col-xl-6 col-lg-12">
           <div class="row">
+
+      
+            {% for item in the_most_popular %}
             <div class="col-md-6">
               <div class="single-features-item b-radius mb-20">
                 <div class="row g-0 align-items-center">
@@ -136,12 +141,12 @@
                       <div class="features-product-image w-img">
                         <a href="product-details.html"
                           ><img
-                            src="{% static 'assets/img/features-product/fp-1.jpg' %}"
+                            src="{{item.image_135x135}}"
                             alt=""
                         /></a>
                       </div>
                       <div class="product__offer">
-                        <span class="discount">-15%</span>
+                        <span class="discount">-{{item.discount}}%</span>
                       </div>
                     </div>
                   </div>
@@ -149,193 +154,40 @@
                     <div class="product__content product__content-d">
                       <h6>
                         <a href="product-details.html"
-                          >Электробритва Philips S3134/51</a
+                          >{{item.name}}</a
                         >
                       </h6>
                       <div class="rating mb-5">
                         <ul>
                           <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
                           </li>
                           <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
                           </li>
                           <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
                           </li>
                           <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
                           </li>
                           <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                        </ul>
-                        <span>(451 просмотр)</span>
-                      </div>
-                      <div class="price d-price">
-                        <span>$307.00 <del>$110</del></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="single-features-item b-radius mb-20">
-                <div class="row g-0 align-items-center">
-                  <div class="col-6">
-                    <div class="features-thum">
-                      <div class="features-product-image w-img">
-                        <a href="product-details.html"
-                          ><img
-                            src="{% static 'assets/img/features-product/fp-2.jpg' %}"
-                            alt=""
-                        /></a>
-                      </div>
-                      <div class="product__offer">
-                        <span class="discount">-5%</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="product__content product__content-d">
-                      <h6>
-                        <a href="product-details.html"
-                          >Bolalar uchun avtomobil Porsche 998</a
-                        >
-                      </h6>
-                      <div class="rating mb-5">
-                        <ul>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
                           </li>
                         </ul>
                         <span>(56 просмотр)</span>
                       </div>
                       <div class="price d-price">
-                        <span>$307.00 <del>$110</del></span>
+                        <span>${{item.price}} <del>$110</del></span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            {% endfor %}
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="single-features-item b-radius mb-20">
-                <div class="row g-0 align-items-center">
-                  <div class="col-6">
-                    <div class="features-thum">
-                      <div class="features-product-image w-img">
-                        <a href="product-details.html"
-                          ><img
-                            src="{% static 'assets/img/features-product/fp-3.jpg' %}"
-                            alt=""
-                        /></a>
-                      </div>
-                      <div class="product__offer">
-                        <span class="discount">-25%</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="product__content product__content-d">
-                      <h6>
-                        <a href="product-details.html"
-                          >2E 2E Noutbuk sumkasi, Urban Groove, 1 oy</a
-                        >
-                      </h6>
-                      <div class="rating mb-5">
-                        <ul>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                        </ul>
-                        <span>(654 просмотр)</span>
-                      </div>
-                      <div class="price d-price">
-                        <span>$307.00 <del>$110</del></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="single-features-item b-radius mb-20">
-                <div class="row g-0 align-items-center">
-                  <div class="col-6">
-                    <div class="features-thum">
-                      <div class="features-product-image w-img">
-                        <a href="product-details.html"
-                          ><img
-                            src="{% static 'assets/img/features-product/fp-4.jpg' %}"
-                            alt=""
-                        /></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="product__content product__content-d">
-                      <h6>
-                        <a href="product-details.html">
-                          Televizor Gold Star 32D1 LED</a
-                        >
-                      </h6>
-                      <div class="rating mb-5">
-                        <ul>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fal fa-star"></i></a>
-                          </li>
-                        </ul>
-                        <span>(486 просмотр)</span>
-                      </div>
-                      <div class="price d-price">
-                        <span>$307.00 <del>$110</del></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
