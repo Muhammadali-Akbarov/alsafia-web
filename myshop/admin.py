@@ -4,5 +4,11 @@ from myshop.models.products import Products
 from myshop.models.categories import Categories
 
 
-admin.site.register(Products)
+class ProductsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'price', 'discount', 'category',
+                    'image_450_200', 'image_330x330')
+    exclude = ('slug',)
+
+
+admin.site.register(Products, ProductsAdmin)
 admin.site.register(Categories)

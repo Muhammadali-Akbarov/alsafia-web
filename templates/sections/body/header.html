@@ -35,9 +35,8 @@
                                 <div class="ovic-menu-wrapper">
                                     <ul>
                                         <li><a href="{% url 'about-us' %}">Biz haqimizda</a></li>
-                                        <li><a href="contact.html">Ko'proq</a></li>
-                                        <li><a href="contact.html">Bog'lanish</a></li>
-                                        <li><a href="faq.html">Savollar</a></li>
+                                        <li><a href="{% url 'contact-us' %}">Bog'lanish</a></li>
+                                        <li><a href="{% url 'faq' %}">Savollar</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -162,11 +161,11 @@
                                     <nav id="mobile-menu" style="display: block;">
                                         <ul>
                                             <li>
-                                                <a href="shop.html">All Categories</a>
+                                                <a href="{% url 'category' 0 %}">All Categories</a>
                                             </li>
                                             {% for item in categories %}
                                             <li>
-                                                <a href="shop.html">{{item.name}}</a>
+                                                <a href="{% url 'category' item.id %}">{{item.name}}</a>
                                             </li>
                                             {% endfor %}
 
