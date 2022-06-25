@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Categories(models.Model):
-    
+    ALL = 0
     ENG_KOP_SOTILADIGAN=1
     TOP_10=2
     YANGILAR=3
@@ -12,7 +12,6 @@ class Categories(models.Model):
     ENG_MASHHUR_MAHSULOTLAR=7
     
     name = models.CharField(max_length=30, null=True, blank=False)
-    # sid  = models.CharField(max_length=2, null=True, blank=True)
     
     def __str__(self):
         return str(f"ID-{self.id} {self.name}")

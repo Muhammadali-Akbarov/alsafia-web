@@ -1,0 +1,15 @@
+{% extends 'app/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'sections/index/offcanvas.html'%}
+
+<main>
+    
+{% include 'sections/contact/page-banner-area-start.html'%}
+{% include 'sections/contact/location-area-start.html'%}
+{% include 'sections/contact/cmaps-area-start.html'%}
+</main>
+{% endblock %}

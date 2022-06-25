@@ -14,7 +14,7 @@ class Products(models.Model):
     price = models.FloatField(verbose_name="mahsulotning narxi")
     discount = models.PositiveIntegerField(
         verbose_name="Chegirma", default=0, blank=True)
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="category")
     image_450_200 = models.ImageField(
         verbose_name='450x200', blank=True, default="images/banner_1.jpg")
     image_330x330 = models.ImageField(
@@ -28,7 +28,7 @@ class Products(models.Model):
     updated = models.DateTimeField(auto_now=True)
     
     @property
-    def imageURL(self):
+    def imageURL(self) -> str:
         """This function for to fix images url"""
         try:
             url = self.image_450_200.url
@@ -36,7 +36,7 @@ class Products(models.Model):
             url = ""
         return url
 
-    def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs) -> None:
         if not self.slug:
             self.slug = slugify(self.name)
 

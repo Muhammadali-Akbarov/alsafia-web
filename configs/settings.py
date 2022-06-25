@@ -119,7 +119,7 @@ LOGGING = {
 
     'handlers': {
         'file': {
-            'filename': LOGFILE_PATH + 'billingapi.log',
+            'filename': LOGFILE_PATH + 'alsafia.log',
             'class': 'logging.handlers.RotatingFileHandler',
             'maxBytes': 20 * 1024 * 1024,  # 20MB
             'backupCount': 5,

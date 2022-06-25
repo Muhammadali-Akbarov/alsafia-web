@@ -19,4 +19,5 @@ copydata:
 loaddata:
 	python3 manage.py loaddata db.json
 
-release: python manage.py loaddata db.json
+push: 
+	git add . && git commit --amend && git push -f origin feature/models && git push heroku master
