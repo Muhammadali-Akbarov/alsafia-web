@@ -1,5 +1,4 @@
-from unicodedata import category
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from myshop.models.products import Products
 from myshop.models.categories import Categories
@@ -68,3 +67,15 @@ def categoryView(request, id: int) -> object:
     }
 
     return render(request, 'myshop/by_category.html', context)
+
+
+def likeView(request, id: int) -> object:
+    try:
+        item: object = Products.objects.filter(id=id)
+        item.likes += 1
+        item.save()
+    
+    except:
+        pass
+    
+    return redirect('category', id=item.id)
