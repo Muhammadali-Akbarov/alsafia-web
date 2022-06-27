@@ -1,5 +1,7 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render
+from django.shortcuts import redirect
 
+from myshop.models.likes import Likes
 from myshop.models.products import Products
 from myshop.models.categories import Categories
 
@@ -69,13 +71,12 @@ def categoryView(request, id: int) -> object:
     return render(request, 'myshop/by_category.html', context)
 
 
-def likeView(request, id: int) -> object:
-    try:
-        item: object = Products.objects.filter(id=id)
-        item.likes += 1
-        item.save()
+def likeView(request, id: int) -> None:
+    item, _ = Likes.objects.get_or_create(products_id=id, user=request.user)
+    if item.liked:
+        item.isFalse()
     
-    except:
-        pass
+    if not item.liked:
+        item.isTrue()
     
-    return redirect('category', id=item.id)
+    return redirect('category', request.META['HTTP_REFERER'][34:-1])

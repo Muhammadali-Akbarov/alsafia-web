@@ -1,6 +1,7 @@
 from django.urls import path
 
 from .views import faqView
+from .views import likeView
 from .views import homeView
 from .views import shopView
 from .views import loginView
@@ -10,7 +11,6 @@ from .views import contactView
 from .views import categoryView
 from .views import myWishlistView
 from .views import shopViewDetail
-
 
 urlpatterns = [
     
@@ -25,6 +25,7 @@ urlpatterns = [
     
     # details
     path('myshop/<str:id>/', shopViewDetail, name='shop-detail'),
+    path('likes/<int:id>/', likeView, name='likes'),
 
     # my-account
     path('my-account/', loginView, name='my-account'),

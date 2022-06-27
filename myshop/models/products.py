@@ -22,7 +22,6 @@ class Products(models.Model):
     image_135x135 = models.ImageField(
         verbose_name="135x135", blank=True, default='images/135x135.jpg'
     )
-    likes = models.IntegerField(default=0, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     
