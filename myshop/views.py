@@ -18,12 +18,14 @@ def homeView(request) -> object:
         category=Categories.ENG_KOP_SOTILADIGAN)  # eng ko'p sotiladigan
     the_most_popular = Products.objects.filter(
         category=Categories.ENG_MASHHUR_MAHSULOTLAR)[:4]  # eng mashhur mahsulotlar
-
+    _all_products = Products.objects.all() # all products
+    
     context = {
         "best_seller": best_seller,
         "day_recommends": day_recommends,
         "the_most_popular": the_most_popular,
-        "categories": categories
+        "categories": categories,
+        "all_products": _all_products
     }
 
     return render(request, 'myshop/index.html', context)

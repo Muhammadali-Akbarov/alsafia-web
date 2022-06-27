@@ -1,195 +1,232 @@
 {% load static %}
-<!-- featured-start -->
-<section class="featured light-bg pt-55 pb-40">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-12">
-          <div class="section__head d-flex justify-content-between mb-30">
-            <div class="section__title">
-              <h5 class="st-titile">Eng mashhur mahsulotlar</h5>
+  
+      <!-- cta-area-start -->
+      <section class="cta-area d-ldark-bg pt-10 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="cta-item mb-30">
+                        <h5 class="cta-title"></h5>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="cta-item mb-30">
+                        <h5 class="cta-title">Eng ko'p sotiladigan</h5>
+                    </div>
+                </div>
             </div>
-            <div class="button-wrap">
-              <a href="shop.html"
-                >Barcha mahsulotlar <i class="fal fa-chevron-right"></i
-              ></a>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-6 col-lg-12">
-          <div
-            class="single-features-item single-features-item-d b-radius mb-20"
-          >
-            <div class="row g-0 align-items-center">
-              <div class="col-md-6">
-                <div class="features-thum">
-                  <div class="features-product-image w-img">
-                    <a href="product-details.html"
-                      ><img
-                        src="{% static 'assets/img/features-product/fpb-1.jpg' %}"
-                        alt=""
-                    /></a>
-                  </div>
-                  <div class="product__offer">
-                    <span class="discount">-15%</span>
-                  </div>
-                  <div class="product-action">
-                    <a
-                      href="#"
-                      class="icon-box icon-box-1"
-                      data-bs-toggle="modal"
-                      data-bs-target="#productModalId"
-                    >
-                      <i class="fal fa-eye"></i>
-                      <i class="fal fa-eye"></i>
-                    </a>
-                    <a href="#" class="icon-box icon-box-1">
-                      <i class="fal fa-heart"></i>
-                      <i class="fal fa-heart"></i>
-                    </a>
-                    <a href="#" class="icon-box icon-box-1">
-                      <i class="fal fa-layer-group"></i>
-                      <i class="fal fa-layer-group"></i>
-                    </a>
-                  </div>
+    </section>
+    <!-- cta-area-end -->
+    
+  <!-- products -->
+  <div class="tab-content" id="productGridTabContent">
+    <!-- images -->
+    <div class="tab-pane fade show active" id="FourCol" role="tabpanel" aria-labelledby="FourCol-tab">
+      <div class="tp-wrapper">
+        <div class="row g-0">
+          {% for item in best_seller %}
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="product__item product__item-d">
+              <div class="product__thumb fix">
+                <div class="product-image w-img">
+                  <a href="product-details.html">
+                    <img src="{{item.imageURL}}" alt="{{item.name}}" />
+                  </a>
+                </div>
+                <div class="product-action">
+                  <a href="#{{item.name}}" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModal{{item.id}}">
+                    <i class="fal fa-eye"></i>
+                    <i class="fal fa-eye"></i>
+                  </a>
+                  <a href="{% url 'likes' item.id %}" class="icon-box icon-box-1">
+                    <i class="fal fa-heart"></i>
+                    <i class="fal fa-heart"></i>
+                  </a>
+                  <a href="#" class="icon-box icon-box-1">
+                    <i class="fal fa-layer-group"></i>
+                    <i class="fal fa-layer-group"></i>
+                  </a>
                 </div>
               </div>
-
-              <div class="col-md-6">
-                <div class="product__content product__content-d">
-                  <h6>
-                    <a href="product-details.html"
-                      >Midway / Elektrosamokat MIDWAY YAMATO 0809 PRO</a
-                    >
-                  </h6>
-                  <div class="rating mb-5">
-                    <ul class="rating-d">
-                      <li>
-                        <a href="#"><i class="fal fa-star"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="fal fa-star"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="fal fa-star"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="fal fa-star"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="fal fa-star"></i></a>
-                      </li>
-                    </ul>
-                    <span>(998 просмотр)</span>
-                  </div>
-                  <div class="price d-price mb-10">
-                    <span>$307.00 <del>$110</del></span>
-                  </div>
-                  <div class="features-des mb-25">
-                    <ul>
-                      <li>
-                        <a href="product-details.html"
-                          ><i class="fas fa-circle"></i> Maksimal tezlik ---
-                          30,0 km/soat</a
-                        >
-                      </li>
-                      <li>
-                        <a href="product-details.html"
-                          ><i class="fas fa-circle"></i> Ramka / asosiy
-                          material --- alyuminiy</a
-                        >
-                      </li>
-                      <li>
-                        <a href="product-details.html"
-                          ><i class="fas fa-circle"></i> Maksimal yuk ---
-                          120 kg</a
-                        >
-                      </li>
-                      <li>
-                        <a href="product-details.html"
-                          ><i class="fas fa-circle"></i> To'liq to'plam ---
-                          Elektr skuter, zaryadlovchi</a
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="cart-option">
-                    <a href="cart.html" class="cart-btn-2 w-100 mr-10"
-                      >Savatchaga qo'shish</a
-                    >
-                    <a href="cart.html" class="transperant-btn"
-                      ><i class="fal fa-heart"></i
-                    ></a>
-                  </div>
+              <div class="product__content-3">
+                <h6>
+                  <a href="product-details.html">{{item.name}}</a>
+                </h6>
+                <div class="rating mb-5">
+                  <ul>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                  </ul>
+                  <span>(01 review)</span>
                 </div>
+                <div class="price mb-10">
+                  <span>${{item.price}}</span>
+                </div>
+              </div>
+              <div class="product__add-cart-s text-center">
+                <button type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+                  Add to Cart
+                </button>
+                <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100"
+                  data-bs-toggle="modal" data-bs-target="#productModal{{item.id}}">
+                  Quick View
+                </button>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="col-xl-6 col-lg-12">
-          <div class="row">
-
-      
-            {% for item in the_most_popular %}
-            <div class="col-md-6">
-              <div class="single-features-item b-radius mb-20">
-                <div class="row g-0 align-items-center">
-                  <div class="col-6">
-                    <div class="features-thum">
-                      <div class="features-product-image w-img">
-                        <a href="product-details.html"
-                          ><img
-                            src="{{item.image_135x135}}"
-                            alt=""
-                        /></a>
+          <!-- shop modal start -->
+          <div class="modal fade" id="productModal{{item.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered product__modal" role="document">
+              <div class="modal-content">
+                <div class="product__modal-wrapper p-relative">
+                  <div class="product__modal-close p-absolute">
+                    <button data-bs-dismiss="modal"><i class="fal fa-times"></i></button>
+                  </div>
+                  <div class="product__modal-inner">
+                    <div class="row">
+                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="product__modal-box">
+                          <div class="tab-content" id="modalTabContent">
+                            <div class="tab-pane fade show active" id="nav1" role="tabpanel" aria-labelledby="nav1-tab">
+                              <div class="product__modal-img w-img">
+                                <img src="{{item.imageURL}}" alt="" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="product__offer">
-                        <span class="discount">-{{item.discount}}%</span>
+                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="product__modal-content">
+                          <h4>
+                            <a href="product-details.html"><p>{{item.name}}</p></a>
+                          </h4>
+                          
+                          <div class="product__review d-sm-flex">
+                            
+                            <div class="rating rating__shop mb-10 mr-30">
+                              <ul>
+                                <li>
+                                  <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                                <li>
+                                  <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                                <li>
+                                  <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                                <li>
+                                  <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                                <li>
+                                  <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="product__add-review mb-15">
+                              <span>99 reviews</span>
+                            </div>
+                          </div>
+                          <div class="product__price">
+                            <span>Narxi: ${{item.price}}</span>
+                          </div>
+                          <div class="product__modal-des mt-20 mb-15">
+                            <p>
+                              {{item.description}}
+                            </p>
+                          </div>
+                          <div class="product__stock mb-20">
+                            <span class="mr-10">Availability :</span>
+                            <span>9999 in stock</span>
+                          </div>
+                          <div class="product__modal-form">
+                            <form action="#">
+                              <div class="pro-quan-area d-lg-flex align-items-center">
+                                <div class="product-quantity mr-20 mb-25">
+                                  <div class="cart-plus-minus p-relative">
+                                    <input type="text" value="1" />
+                                  </div>
+                                </div>
+                                <div class="pro-cart-btn mb-25">
+                                  <button class="cart-btn" type="submit">
+                                    Add to cart
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="product__stock mb-30">
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  <span class="sku mr-10">SKU:</span>
+                                  <span>{{item.name}}</span></a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <span class="cat mr-10">Kategoriya:</span>
+                                  <span>{{item.category.name}}</span></a>
+                              </li>
+                              <li>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-6">
-                    <div class="product__content product__content-d">
-                      <h6>
-                        <a href="product-details.html"
-                          >{{item.name}}</a
-                        >
-                      </h6>
-                      <div class="rating mb-5">
-                        <ul>
-                          <li>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                          </li>
-                        </ul>
-                        <span>(56 просмотр)</span>
-                      </div>
-                      <div class="price d-price">
-                        <span>${{item.price}} <del>$110</del></span>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
-            {% endfor %}
           </div>
-
+          <!-- shop modal end -->
+          {% endfor %}
         </div>
       </div>
     </div>
-  </section>
-  <!-- featured-end -->
+    <!-- <div class="tp-pagination text-center">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="basic-pagination pt-30 pb-30">
+          <nav>
+            <ul>
+              <li>
+                <a href="shop.html" class="active">1</a>
+              </li>
+              <li>
+                <a href="shop.html">2</a>
+              </li>
+              <li>
+                <a href="shop.html">3</a>
+              </li>
+              <li>
+                <a href="shop.html">5</a>
+              </li>
+              <li>
+                <a href="shop.html">6</a>
+              </li>
+              <li>
+                <a href="shop.html">
+                  <i class="fal fa-angle-double-right"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  </div>

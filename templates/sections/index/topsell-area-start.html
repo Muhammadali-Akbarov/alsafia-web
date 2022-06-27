@@ -1,117 +1,260 @@
 {% load static %}
-<!-- topsell__area-start -->
-<section class="topsell__area-1 pt-15">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="section__head d-flex justify-content-between mb-10">
-                    <div class="section__title">
-                        <h5 class="st-titile-d">Kunning eng yaxshi takliflari</h5>
-                    </div>
-                    <div class="offer-time">
-                        <span class="offer-title d-none d-sm-block">Shoshiling! Aksiya yakunigacha:</span>
-                        <div class="countdown">
-                            <div class="countdown-inner b-radius" data-countdown="" data-date="Mar 02 2022 20:20:22">
-                                <ul class="text-center">
-                                    <li><span data-days="">36</span> KUN</li>
-                                    <li><span data-hours="">8</span> SOAT</li>
-                                    <li><span data-minutes="">16</span> DAQIQA</li>
-                                    <li><span data-seconds="">54</span> SONIYA</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
+<div class="col-xl-9 col-lg-8">
+  <div class="product-lists-top">
+    <!-- showing -->
+    <div class="product__filter-wrap">
+      <div class="row align-items-center">
+        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+          <div class="product__filter d-sm-flex align-items-center">
+            <div class="product__col">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="FourCol-tab" data-bs-toggle="tab" data-bs-target="#FourCol"
+                    type="button" role="tab" aria-controls="FourCol" aria-selected="true">
+                    <i class="fal fa-th"></i>
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="FiveCol-tab" data-bs-toggle="tab" data-bs-target="#FiveCol" type="button"
+                    role="tab" aria-controls="FiveCol" aria-selected="false">
+                  </button>
+                </li>
+              </ul>
             </div>
+           
+          </div>
         </div>
-        <div class="row">
-            
-            <div class="product-bs-slider">
-                <div class="product-slider swiper-container">
-                    <div class="swiper-wrapper">
-                        {% for item in day_recommends %}
-
-                        <div class="product__item swiper-slide">
-                            <div class="product__thumb fix">
-                                <div class="product-image w-img">
-                                    <a href="product-details.html">
-                                        <img src="{{item.imageURL}}" alt="product" />
-                                    </a>
-                                </div>
-                                <div class="product__offer">
-                                    <span class="discount">-{{item.discount}}%</span>
-                                </div>
-                                <div class="product-action">
-                                    <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal"
-                                        data-bs-target="#productModalId">
-                                        <i class="fal fa-eye"></i>
-                                        <i class="fal fa-eye"></i>
-                                    </a>
-                                    <a href="#" class="icon-box icon-box-1">
-                                        <i class="fal fa-heart"></i>
-                                        <i class="fal fa-heart"></i>
-                                    </a>
-                                    <a href="#" class="icon-box icon-box-1">
-                                        <i class="fal fa-layer-group"></i>
-                                        <i class="fal fa-layer-group"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product__content">
-                                <h6>
-                                    <a href="product-details.html">{{item.name}}</a>
-                                </h6>
-                                <div class="rating mb-5">
-                                    <ul>
-                                        <li>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fal fa-star"></i></a>
-                                        </li>
-                                    </ul>
-                                    <span>(112 просмотр)</span>
-                                </div>
-                                <div class="price mb-10">
-                                    <span>${{item.price}}</span>
-                                </div>
-                                <div class="progress mb-5">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 10%"
-                                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="progress-rate">
-                                    <span>Sotilgan:312/1225</span>
-                                </div>
-                            </div>
-                            <div class="product__add-cart text-center">
-                                <button type="button"
-                                    class="cart-btn product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
-                                    Savatchaga qo'shish
-                                </button>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <!-- If we need navigation buttons -->
-                <div class="bs-button bs-button-prev">
-                    <i class="fal fa-chevron-left"></i>
-                </div>
-                <div class="bs-button bs-button-next">
-                    <i class="fal fa-chevron-right"></i>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-</section>
-<!-- topsell__area-end -->
+  </div>
+
+        <!-- cta-area-start -->
+        <section class="cta-area d-ldark-bg pt-10 pb-5">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-4 col-md-6">
+                      <div class="cta-item mb-30">
+                          <h5 class="cta-title"></h5>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6">
+                      <div class="cta-item mb-30">
+                          <h5 class="cta-title">Kun takliflari</h5>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <!-- cta-area-end -->
+
+  <!-- products -->
+  <div class="tab-content" id="productGridTabContent">
+    <!-- images -->
+    <div class="tab-pane fade show active" id="FourCol" role="tabpanel" aria-labelledby="FourCol-tab">
+      <div class="tp-wrapper">
+        <div class="row g-0">
+          {% for item in day_recommends %}
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="product__item product__item-d">
+              <div class="product__thumb fix">
+                <div class="product-image w-img">
+                  <a href="product-details.html">
+                    <img src="{{item.imageURL}}" alt="{{item.name}}" />
+                  </a>
+                </div>
+                <div class="product-action">
+                  <a href="#{{item.name}}" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModal{{item.id}}">
+                    <i class="fal fa-eye"></i>
+                    <i class="fal fa-eye"></i>
+                  </a>
+                  <a href="{% url 'likes' item.id %}" class="icon-box icon-box-1">
+                    <i class="fal fa-heart"></i>
+                    <i class="fal fa-heart"></i>
+                  </a>
+                  <a href="#" class="icon-box icon-box-1">
+                    <i class="fal fa-layer-group"></i>
+                    <i class="fal fa-layer-group"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="product__content-3">
+                <h6>
+                  <a href="product-details.html">{{item.name}}</a>
+                </h6>
+                <div class="rating mb-5">
+                  <ul>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                  </ul>
+                  <span>(01 review)</span>
+                </div>
+                <div class="price mb-10">
+                  <span>${{item.price}}</span>
+                </div>
+              </div>
+              <div class="product__add-cart-s text-center">
+                <button type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+                  Add to Cart
+                </button>
+                <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100"
+                  data-bs-toggle="modal" data-bs-target="#productModal{{item.id}}">
+                  Quick View
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- shop modal start -->
+          <div class="modal fade" id="productModal{{item.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered product__modal" role="document">
+              <div class="modal-content">
+                <div class="product__modal-wrapper p-relative">
+                  <div class="product__modal-close p-absolute">
+                    <button data-bs-dismiss="modal"><i class="fal fa-times"></i></button>
+                  </div>
+                  <div class="product__modal-inner">
+                    <div class="row">
+                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="product__modal-box">
+                          <div class="tab-content" id="modalTabContent">
+                            <div class="tab-pane fade show active" id="nav1" role="tabpanel" aria-labelledby="nav1-tab">
+                              <div class="product__modal-img w-img">
+                                <img src="{{item.imageURL}}" alt="" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="product__modal-content">
+                          <h4>
+                            <a href="product-details.html"><p>{{item.name}}</p></a>
+                          </h4>
+                          
+                          <div class="product__review d-sm-flex">
+                            
+                            <div class="rating rating__shop mb-10 mr-30">
+                              <ul>
+                                <li>
+                                  <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                                <li>
+                                  <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                                <li>
+                                  <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                                <li>
+                                  <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                                <li>
+                                  <a href="#"><i class="fa fa-star"></i></a>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="product__add-review mb-15">
+                              <span>99 reviews</span>
+                            </div>
+                          </div>
+                          <div class="product__price">
+                            <span>Narxi: ${{item.price}}</span>
+                          </div>
+                          <div class="product__modal-des mt-20 mb-15">
+                            <p>
+                              {{item.description}}
+                            </p>
+                          </div>
+                          <div class="product__stock mb-20">
+                            <span class="mr-10">Availability :</span>
+                            <span>9999 in stock</span>
+                          </div>
+                          <div class="product__modal-form">
+                            <form action="#">
+                              <div class="pro-quan-area d-lg-flex align-items-center">
+                                <div class="product-quantity mr-20 mb-25">
+                                  <div class="cart-plus-minus p-relative">
+                                    <input type="text" value="1" />
+                                  </div>
+                                </div>
+                                <div class="pro-cart-btn mb-25">
+                                  <button class="cart-btn" type="submit">
+                                    Add to cart
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="product__stock mb-30">
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  <span class="sku mr-10">SKU:</span>
+                                  <span>{{item.name}}</span></a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <span class="cat mr-10">Kategoriya:</span>
+                                  <span>{{item.category.name}}</span></a>
+                              </li>
+                              <li>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- shop modal end -->
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!-- <div class="tp-pagination text-center">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="basic-pagination pt-30 pb-30">
+          <nav>
+            <ul>
+              <li>
+                <a href="shop.html" class="active">1</a>
+              </li>
+              <li>
+                <a href="shop.html">2</a>
+              </li>
+              <li>
+                <a href="shop.html">3</a>
+              </li>
+              <li>
+                <a href="shop.html">5</a>
+              </li>
+              <li>
+                <a href="shop.html">6</a>
+              </li>
+              <li>
+                <a href="shop.html">
+                  <i class="fal fa-angle-double-right"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  </div>
