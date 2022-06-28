@@ -1,3 +1,4 @@
+from itertools import product
 from django.shortcuts import render
 from django.shortcuts import redirect
 
@@ -5,6 +6,7 @@ from myshop.models.likes import Likes
 from myshop.models.products import Products
 from myshop.models.categories import Categories
 
+from myshop.utils import send_message
 
 def loginView(request) -> None:
     return render(request, 'myshop/my-account.html')
@@ -39,7 +41,7 @@ def shopView(request):
     return render(request, 'myshop/shop.html')
 
 
-def shopViewDetail(request, id):
+def shopDetailView(request, id):
     return render(request, 'myshop/shop-detail.html')
 
 
@@ -71,6 +73,19 @@ def categoryView(request, id: int) -> object:
     }
 
     return render(request, 'myshop/by_category.html', context)
+
+
+def sendMessageView(request) -> None:
+    if request.method == 'POST':
+        mydict: dict = {}
+        product_id = request.META['HTTP_REFERER'][29:-1]
+        mydict.update({
+            "name": request.POST.get('name'),
+            "phone": request.POST.get('phone'),
+            "product_id": product_id
+        })
+        send_message(mydict)
+        return redirect('shop-detail', product_id)
 
 
 def likeView(request, id: int) -> None:
