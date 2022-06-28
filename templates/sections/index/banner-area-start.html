@@ -1,39 +1,36 @@
-  {% load static %}
-  <!-- banner__area-start -->
-  <section class="banner__area pt-20 pb-10">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-4 col-lg-4 col-md-6">
-          <div class="banner__item p-relative w-img mb-30">
-            <div class="banner__img">
-              <a href="product-details.html"
-                ><img src="{% static 'assets/img/banner/banner-1.jpg' %}" alt=""
-              /></a>
-            </div>
-
+{% load static %}
+<!-- banner__area-start -->
+<section class="banner__area pt-20 pb-10">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-6">
+        <div class="banner__item p-relative w-img mb-30">
+          <div class="banner__img">
+            <a href="{% url 'shop-detail' 1%}"
+              ><img src="{% static 'assets/img/banner/banner-1.jpg' %}" alt=""
+            /></a>
           </div>
         </div>
-        <div class="col-xl-4 col-lg-4 col-md-6">
-          <div class="banner__item p-relative mb-30 w-img">
-            <div class="banner__img">
-              <a href="product-details.html"
-                ><img src="{% static 'assets/img/banner/banner-2.jpg' %}" alt=""
-              /></a>
-            </div>
-
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6">
+        <div class="banner__item p-relative mb-30 w-img">
+          <div class="banner__img">
+            <a href="{% url 'shop-detail' 1%}"
+              ><img src="{% static 'assets/img/banner/banner-2.jpg' %}" alt=""
+            /></a>
           </div>
         </div>
-        <div class="col-xl-4 col-lg-4 col-md-6">
-          <div class="banner__item p-relative mb-30 w-img">
-            <div class="banner__img">
-              <a href="product-details.html"
-                ><img src="{% static 'assets/img/banner/banner-3.jpg' %}" alt=""
-              /></a>
-            </div>
-            
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6">
+        <div class="banner__item p-relative mb-30 w-img">
+          <div class="banner__img">
+            <a href="{% url 'shop-detail' 1%}"
+              ><img src="{% static 'assets/img/banner/banner-3.jpg' %}" alt=""
+            /></a>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <!-- banner__area-end -->
+  </div>
+</section>
+<!-- banner__area-end -->

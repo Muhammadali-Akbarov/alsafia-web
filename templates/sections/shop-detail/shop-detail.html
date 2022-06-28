@@ -1,0 +1,41 @@
+<div class="product-details-des mt-40 mb-60">
+    <div class="modal-dialog modal-dialog-centered product__modal" role="document">
+        <div class="modal-content">
+            <div class="product__modal-wrapper p-relative">
+                <div class="product__modal-inner">
+                    <div class="row">
+                        <center>
+                            <a href="orange">Buyurtma uchun formani to'ldiring</a>
+                            <br>
+                            <br>
+                        </center>
+                        <!-- cta-area-end -->
+                        <div class="comment-input-box">
+                            <form action="{% url 'send-message' %}" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-xxl-12">
+                                        <div class="comment-input">
+                                            <input name="name" type="text" placeholder="Ismingiz", required, maxlength="50">
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-12">
+                                        <div class="comment-input">
+                                            <input name="phone" type="text" value="+998" placeholder="", required, maxlength="14">
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-xxl-12">
+                                        <div class="comment-submit">
+                                            <button type="submit" class="cart-btn">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
