@@ -58,7 +58,7 @@
             <div class="product__item product__item-d">
               <div class="product__thumb fix">
                 <div class="product-image w-img">
-                  <a href="product-details.html">
+                  <a href="{% url 'shop-detail' item.id %}">
                     <img src="{{item.imageURL}}" alt="{{item.name}}" />
                   </a>
                 </div>
@@ -106,9 +106,9 @@
                 </div>
               </div>
               <div class="product__add-cart-s text-center">
-                <button type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+                <a href="{% url 'add-cart' item.id%}" type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
                   Add to Cart
-                </button>
+                </a>
                 <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100"
                   data-bs-toggle="modal" data-bs-target="#productModal{{item.id}}">
                   Quick View
@@ -189,9 +189,9 @@
                                   </div>
                                 </div>
                                 <div class="pro-cart-btn mb-25">
-                                  <button class="cart-btn" type="submit">
+                                  <a href="{% url 'add-cart' item.id%}" class="cart-btn" type="submit">
                                     Add to cart
-                                  </button>
+                                  </a>
                                 </div>
                               </div>
                             </form>

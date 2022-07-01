@@ -6,6 +6,7 @@ from .views import homeView
 from .views import shopView
 from .views import loginView
 from .views import aboutView
+from .views import addCartView
 from .views import myCardView
 from .views import contactView
 from .views import categoryView
@@ -28,6 +29,7 @@ urlpatterns = [
     path('myshop/<str:id>/', shopDetailView, name='shop-detail'),
     path('likes/<int:id>/', likeView, name='likes'),
     path('send-message', sendMessageView, name='send-message'),
+    path('add-cart/<str:id>/', addCartView, name='add-cart'),
     
     # my-account
     path('my-account/', loginView, name='my-account'),

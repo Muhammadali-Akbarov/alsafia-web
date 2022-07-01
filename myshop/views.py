@@ -1,12 +1,14 @@
-from itertools import product
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
+from myshop.models.cart import Cart
 from myshop.models.likes import Likes
 from myshop.models.products import Products
 from myshop.models.categories import Categories
 
 from myshop.utils import send_message
+
 
 def loginView(request) -> None:
     return render(request, 'myshop/my-account.html')
@@ -20,8 +22,8 @@ def homeView(request) -> object:
         category=Categories.ENG_KOP_SOTILADIGAN)  # eng ko'p sotiladigan
     the_most_popular = Products.objects.filter(
         category=Categories.ENG_MASHHUR_MAHSULOTLAR)[:4]  # eng mashhur mahsulotlar
-    _all_products = Products.objects.all() # all products
-    
+    _all_products = Products.objects.all()  # all products
+
     context = {
         "best_seller": best_seller,
         "day_recommends": day_recommends,
@@ -41,8 +43,13 @@ def shopView(request):
     return render(request, 'myshop/shop.html')
 
 
-def shopDetailView(request, id):
-    return render(request, 'myshop/shop-detail.html')
+def shopDetailView(request, id) -> Products:
+    items: Products = Products.objects.get(id=id)
+    context: dict = {
+        "items": items
+    }
+
+    return render(request, 'myshop/shop-detail.html', context)
 
 
 def myWishlistView(request):
@@ -61,10 +68,10 @@ def faqView(request):
     return render(request, 'myshop/faq.html')
 
 
-def categoryView(request, id: int) -> object:    
+def categoryView(request, id: int) -> object:
     if id == 0:
         products = Products.objects.all()
-        
+
     if id > 0:
         products = Products.objects.filter(category_id=id)
 
@@ -92,8 +99,17 @@ def likeView(request, id: int) -> None:
     item, _ = Likes.objects.get_or_create(products_id=id, user=request.user)
     if item.liked:
         item.isFalse()
-    
+
     if not item.liked:
         item.isTrue()
-    
+
     return redirect('category', request.META['HTTP_REFERER'][34:-1])
+
+# @login_required('home') # will change
+def addCartView(request, id: int) -> None:
+    product: Products = Products.objects.get(id=id)
+    cart,_ = Cart.objects.get_or_create(user=request.user)
+    cart.products.add(product)
+    cart.save()
+    
+    return redirect('shop-detail', product.id)

@@ -10,6 +10,7 @@ User = get_user_model()
 class Products(models.Model):
     name = models.CharField(max_length=255, verbose_name="mahsulotning nomi")
     slug = models.SlugField(max_length=250, unique=True, null=True, blank=True)
+    description=models.TextField(null=True, blank=False,verbose_name="mahsulot haqida qisqacha")
     price = models.FloatField(verbose_name="mahsulotning narxi")
     discount = models.PositiveIntegerField(
         verbose_name="Chegirma", default=0, blank=True)
