@@ -19,7 +19,7 @@
                             </thead>
                             <tbody>
                                 {% for item in items %}
-                                <tr>
+                                <tr class="cart-item__info">
                                     <td class="product-thumbnail"><a href="shop-details.html"><img
                                                 src="{{item.imageURL}}" alt="{{item.name}}"></a></td>
                                     <td class="product-name"><a href="shop-details.html">{{item.name}}</a></td>
@@ -51,9 +51,9 @@
                             <div class="cart-page-total">
                                 <h2>Cart totals</h2>
                                 <ul class="mb-20">
-                                    <li>Jami <span>{{sum}} UZS</span></li>
+                                    <li>Jami <span style="margin-left: 4px;">UZS</span><span id="overAllSum">{{sum}}</span></li>
                                 </ul>
-                                <a class="tp-btn-h1" href="checkout.html">Proceed to checkout</a>
+                                <a id="submit_to_check" class="tp-btn-h1">Proceed to checkout</a>
                             </div>
                         </div>
                     </div>
@@ -62,4 +62,54 @@
         </div>
     </div>
 </section>
+<script>
+    const baseUrl = "check_cart_list";
+    const allProducts = document.querySelectorAll(".cart-item__info");
+    const products = [];
+    
+    function submit_function () {
+        var overAllPrice = document.querySelector("#overAllSum");
+        console.log(overAllPrice)
+
+        for (let i = 0; i < allProducts.length; i++) {
+            let name = allProducts[i].querySelector(".product-name").textContent;
+            let price = allProducts[i].querySelector(".amount").textContent.slice(1);
+            let count = allProducts[i].querySelector("input").value;
+            let product = {};
+
+            product['name'] = name;
+            product['price'] = price;
+            product['count'] = count;
+            products.push(product);
+        };
+        console.log(products);
+        console.log(overAllPrice.textContent);
+
+        fetch(baseUrl, {
+            method: "POST",
+            body: JSON.stringify({
+                "products": products,
+                "over_all_price": overAllPrice
+            }),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }).then(
+            function (response) {
+                if (response.ok) {
+                    console.log(response.json());
+                    return response.json();
+                }
+                return Promise.reject(response)
+            }
+        ).catch(function (error) {
+        console.warn('Something went wrong.', error);
+        });
+    };
+
+    const submit_btn = document.querySelector("#submit_to_check");
+    submit_btn.addEventListener("click", submit_function)
+    
+</script>
+
 <!-- cart-area-end -->
