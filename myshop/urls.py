@@ -7,7 +7,7 @@ from .views import shopView
 from .views import loginView
 from .views import aboutView
 from .views import addCartView
-from .views import myCardView
+from .views import myCartView
 from .views import contactView
 from .views import categoryView
 from .views import myWishlistView
@@ -18,7 +18,7 @@ urlpatterns = [
     
     path('', homeView, name='home'),
     path('faq/', faqView, name='faq'),
-    path('my-cart', myCardView, name='cart'),
+    path('my-cart', myCartView, name='cart'),
     path('online-shop/', shopView, name='shop'),
     path('about-us/', aboutView, name='about-us'),
     path('wishlist/', myWishlistView, name='wishlist'),

@@ -1,13 +1,17 @@
+from django.db.models import Sum
+
+from django.conf import settings
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
+from myshop.utils import send_message
+
 from myshop.models.cart import Cart
-from myshop.models.likes import Likes
+from myshop.models.products import Likes
 from myshop.models.products import Products
 from myshop.models.categories import Categories
 
-from myshop.utils import send_message
 
 
 def loginView(request) -> None:
@@ -15,6 +19,9 @@ def loginView(request) -> None:
 
 
 def homeView(request) -> object:
+    likes: Likes = Likes.objects.filter(
+        user=request.user, liked=True).select_related("products")
+    
     categories = Categories.objects.all()
     day_recommends = Products.objects.filter(
         category=Categories.KUN_TAKLIFLARI)  # kunning eng yaxhi takliflari
@@ -29,6 +36,7 @@ def homeView(request) -> object:
         "day_recommends": day_recommends,
         "the_most_popular": the_most_popular,
         "categories": categories,
+        "likes": likes,
         "all_products": _all_products
     }
 
@@ -52,12 +60,25 @@ def shopDetailView(request, id) -> Products:
     return render(request, 'myshop/shop-detail.html', context)
 
 
-def myWishlistView(request):
-    return render(request, 'myshop/wishlist.html')
+def myWishlistView(request) -> Likes:
+    likes: Likes = Likes.objects.filter(user=request.user).select_related("products").filter(liked=True)
+    
+    context: dict = {
+        'likes': likes
+        }
+
+    return render(request, 'myshop/wishlist.html', context)
 
 
-def myCardView(request):
-    return render(request, 'myshop/cart.html')
+def myCartView(request):
+    cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+    
+    context: dict = {
+        "items": cartProducts.products.all(),
+        "sum": cartProducts.products.aggregate(Sum('price')).get('price__sum')
+    }
+    
+    return render(request, 'myshop/cart.html', context)
 
 
 def contactView(request):
@@ -96,20 +117,26 @@ def sendMessageView(request) -> None:
 
 
 def likeView(request, id: int) -> None:
-    item, _ = Likes.objects.get_or_create(products_id=id, user=request.user)
+    item, _ = Likes.objects.only('liked').get_or_create(products_id=id, user=request.user)
+    
     if item.liked:
-        item.isFalse()
-
+        item.delete()
+    
     if not item.liked:
         item.isTrue()
-
+    
+    if request.META['SERVER_NAME'] in settings.ALLOWED_HOSTS:
+        return redirect('home')
+    
     return redirect('category', request.META['HTTP_REFERER'][34:-1])
 
-# @login_required('home') # will change
+
 def addCartView(request, id: int) -> None:
     product: Products = Products.objects.get(id=id)
     cart,_ = Cart.objects.get_or_create(user=request.user)
     cart.products.add(product)
     cart.save()
+    if request.META['SERVER_NAME'] in settings.ALLOWED_HOSTS:
+        return redirect('home')
     
     return redirect('shop-detail', product.id)

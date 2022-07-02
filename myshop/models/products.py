@@ -7,6 +7,20 @@ from myshop.models.categories import Categories
 User = get_user_model()
 
 
+class Likes(models.Model):
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    products = models.ForeignKey('Products', on_delete=models.DO_NOTHING)
+    liked = models.BooleanField(default=False, null=True, blank=True)
+    
+    def isTrue(self):
+        self.liked = True
+        self.save()
+    
+    @property
+    def isLiked(self):
+        return self.liked
+
+
 class Products(models.Model):
     name = models.CharField(max_length=255, verbose_name="mahsulotning nomi")
     slug = models.SlugField(max_length=250, unique=True, null=True, blank=True)
@@ -17,12 +31,6 @@ class Products(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="category")
     image_450_200 = models.ImageField(
         verbose_name='450x200', blank=True, default="images/banner_1.jpg")
-    image_330x330 = models.ImageField(
-        verbose_name="330x330", blank=True, default='images/fpb_1.jpg'
-    )
-    image_135x135 = models.ImageField(
-        verbose_name="135x135", blank=True, default='images/135x135.jpg'
-    )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     
@@ -34,13 +42,19 @@ class Products(models.Model):
         except:
             url = ""
         return url
-
+    
+    @property
+    def isLiked(self) -> bool:
+        """This function for to return isLiked bool"""
+        return Likes.objects.only('liked').get(products_id=self.id)
+    
+    
     def save(self, *args, **kwargs) -> None:
         if not self.slug:
             self.slug = slugify(self.name)
 
         super().save(*args, **kwargs)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 

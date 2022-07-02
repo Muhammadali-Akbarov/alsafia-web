@@ -9,68 +9,49 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="product-thumbnail">Images</th>
-                                    <th class="cart-product-name">Product</th>
-                                    <th class="product-price">Unit Price</th>
-                                    <th class="product-quantity">Quantity</th>
-                                    <th class="product-subtotal">Total</th>
-                                    <th class="product-remove">Remove</th>
+                                    <th class="product-thumbnail">Rasmlari</th>
+                                    <th class="cart-product-name">Mahsulot</th>
+                                    <th class="product-price">Narxi</th>
+                                    <th class="product-quantity">Soni</th>
+                                    {% comment %} <th class="product-subtotal">Total</th> {% endcomment %}
+                                    <th class="product-remove">O'chirish</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for item in items %}
                                 <tr>
                                     <td class="product-thumbnail"><a href="shop-details.html"><img
-                                                src="{% static 'assets/img/cart/shop-p-10.jpg' %}" alt=""></a></td>
-                                    <td class="product-name"><a href="shop-details.html">Jacket light</a></td>
-                                    <td class="product-price"><span class="amount">$130.00</span></td>
-                                    <td class="product-quantity">
+                                                src="{{item.imageURL}}" alt="{{item.name}}"></a></td>
+                                    <td class="product-name"><a href="shop-details.html">{{item.name}}</a></td>
+                                    <td class="product-price"><span class="amount">${{item.price}}</span></td>
+                                    <td class="product-price">
                                         <div class="cart-plus-minus"><input type="text" value="1">
-                                            <div class="dec qtybutton">-</div>
-                                            <div class="inc qtybutton">+</div>
+                                           
                                         </div>
                                     </td>
-                                    <td class="product-subtotal"><span class="amount">$130.00</span></td>
                                     <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
                                 </tr>
-                                <tr>
-                                    <td class="product-thumbnail"><a href="shop-details.html"><img
-                                                src="{% static 'assets/img/cart/shop-p-11.jpg' %}" alt=""></a></td>
-                                    <td class="product-name"><a href="shop-details.html">Jacket Pink</a></td>
-                                    <td class="product-price"><span class="amount">$120.50</span></td>
-                                    <td class="product-quantity">
-                                        <div class="cart-plus-minus"><input type="text" value="1">
-                                            <div class="dec qtybutton">-</div>
-                                            <div class="inc qtybutton">+</div>
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal"><span class="amount">$120.50</span></td>
-                                    <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="coupon-all">
-                                <div class="coupon">
-                                    <input id="coupon_code" class="input-text" name="coupon_code" value=""
-                                        placeholder="Coupon code" type="text">
-                                    <button class="tp-btn-h1" name="apply_coupon" type="submit">Apply
-                                        coupon</button>
-                                </div>
+                                
                                 <div class="coupon2">
-                                    <button class="tp-btn-h1" name="update_cart" type="submit">Update cart</button>
+                                    
+                                    <button class="tp-btn-h1" name="update_cart" type="submit">Yangilash</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-end">
+                    <div class="row justify-content-center">
                         <div class="col-md-5">
                             <div class="cart-page-total">
                                 <h2>Cart totals</h2>
                                 <ul class="mb-20">
-                                    <li>Subtotal <span>$250.00</span></li>
-                                    <li>Total <span>$250.00</span></li>
+                                    <li>Jami <span>{{sum}} UZS</span></li>
                                 </ul>
                                 <a class="tp-btn-h1" href="checkout.html">Proceed to checkout</a>
                             </div>

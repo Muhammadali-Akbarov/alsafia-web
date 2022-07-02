@@ -68,12 +68,13 @@
                     <i class="fal fa-eye"></i>
                   </a>
                   <a href="{% url 'likes' item.id %}" class="icon-box icon-box-1">
-                    <i class="fal fa-heart"></i>
-                    <i class="fal fa-heart"></i>
-                  </a>
-                  <a href="#" class="icon-box icon-box-1">
-                    <i class="fal fa-layer-group"></i>
-                    <i class="fal fa-layer-group"></i>
+                    {% if item.isLiked %}
+                      <i class="fa fa-heart"></i>
+                      <i class="fa fa-heart"></i>
+                    {% else %}
+                      <i class="fal fa-heart"></i>
+                      <i class="fal fa-heart"></i>
+                    {% endif %}
                   </a>
                 </div>
               </div>
