@@ -9,7 +9,7 @@ DEBUG = True
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ['alsafia-uzb.herokuapp.com', 'localhost', '127.0.0.1', '0.0.0.0', '.ngrok.io']
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1', '0.0.0.0']
 
 SECRET_KEY = 'django-insecure-0w#^%&_+8=#hqbxqa-&ygw7*-)r+q+pb8$r2)7-3!_tj6vysiq'
 

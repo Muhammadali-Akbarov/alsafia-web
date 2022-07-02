@@ -12,6 +12,7 @@ from myshop.models.products import Likes
 from myshop.models.products import Products
 from myshop.models.categories import Categories
 
+from myshop.utils import send_message
 
 
 def loginView(request) -> None:
