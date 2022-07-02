@@ -13,6 +13,7 @@ from .views import categoryView
 from .views import myWishlistView
 from .views import shopDetailView
 from .views import sendMessageView
+from .views import check_cart_list
 
 urlpatterns = [
     
@@ -33,4 +34,5 @@ urlpatterns = [
     
     # my-account
     path('my-account/', loginView, name='my-account'),
+    path("check_cart_list", check_cart_list, name="check_cart_list")
 ]

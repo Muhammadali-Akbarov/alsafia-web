@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from environs import Env
+from environ import Env
 
 env = Env()
 env.read_env()
@@ -112,9 +112,9 @@ LOGGING = {
 
 MYSERVICE: dict = {
     'telebot': {
-        'base_url': env.str('TELEBOT_URL'),
-        'token': env.str('TELEBOT_TOKEN'),
-        'chat_id': env.str('TELEBOT_CHAT_ID')
+        'base_url': "url",#env.str('TELEBOT_URL'),
+        'token': "token",#env.str('TELEBOT_TOKEN'),
+        'chat_id': "id",#env.str('TELEBOT_CHAT_ID')
     }
 }
 
@@ -135,3 +135,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Cors settings
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
