@@ -63,17 +63,15 @@ def shopDetailView(request, id) -> Products:
 
 def myWishlistView(request) -> Likes:
     likes: Likes = Likes.objects.filter(user=request.user).select_related("products").filter(liked=True)
-    
     context: dict = {
         'likes': likes
-        }
+    }
 
     return render(request, 'myshop/wishlist.html', context)
 
 
 def myCartView(request):
     cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-    
     context: dict = {
         "items": cartProducts.products.all(),
         "sum": cartProducts.products.aggregate(Sum('price')).get('price__sum')
@@ -93,14 +91,14 @@ def faqView(request):
 def categoryView(request, id: int) -> object:
     if id == 0:
         products = Products.objects.all()
-
+    
     if id > 0:
         products = Products.objects.filter(category_id=id)
-
+    
     context: dict = {
         "products": products
     }
-
+    
     return render(request, 'myshop/by_category.html', context)
 
 
