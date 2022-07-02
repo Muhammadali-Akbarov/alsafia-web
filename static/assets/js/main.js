@@ -281,13 +281,17 @@
 	$(".cart-plus-minus").append('<div class="dec qtybutton">-</div><div class="inc qtybutton">+</div>');
 	$(".qtybutton").on("click", function () {
 		var $button = $(this);
+		var price = parseFloat($button.parent().parent().parent().find(".amount").text().slice(1));
+		var $overAll = $("#overAllSum");
 		var oldValue = $button.parent().find("input").val();
 		if ($button.text() == "+") {
 			var newVal = parseFloat(oldValue) + 1;
+			$overAll.text(parseFloat($overAll.text()) + price);
 		} else {
 			// Don't allow decrementing below zero
 			if (oldValue > 0) {
 				var newVal = parseFloat(oldValue) - 1;
+				$overAll.text(parseFloat($overAll.text()) - price);
 			} else {
 				newVal = 0;
 			}
