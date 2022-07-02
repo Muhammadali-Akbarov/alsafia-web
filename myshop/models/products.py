@@ -7,20 +7,6 @@ from myshop.models.categories import Categories
 User = get_user_model()
 
 
-class Likes(models.Model):
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    products = models.ForeignKey('Products', on_delete=models.DO_NOTHING)
-    liked = models.BooleanField(default=False, null=True, blank=True)
-    
-    def isTrue(self):
-        self.liked = True
-        self.save()
-    
-    @property
-    def isLiked(self):
-        return self.liked
-
-
 class Products(models.Model):
     name = models.CharField(max_length=255, verbose_name="mahsulotning nomi")
     slug = models.SlugField(max_length=250, unique=True, null=True, blank=True)
@@ -58,3 +44,16 @@ class Products(models.Model):
     def __str__(self) -> str:
         return self.name
 
+
+class Likes(models.Model):
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    products = models.ForeignKey('Products', on_delete=models.DO_NOTHING)
+    liked = models.BooleanField(default=False, null=True, blank=True)
+    
+    def isTrue(self):
+        self.liked = True
+        self.save()
+    
+    @property
+    def isLiked(self):
+        return self.liked

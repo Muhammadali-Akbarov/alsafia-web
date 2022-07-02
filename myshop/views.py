@@ -1,21 +1,20 @@
 from django.db.models import Sum
-
 from django.conf import settings
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-
-from myshop.utils import send_message
 
 from myshop.models.cart import Cart
 from myshop.models.products import Likes
 from myshop.models.products import Products
 from myshop.models.categories import Categories
 
+from myshop.libs.sms import sms
+from myshop.libs.redis import redis
 from myshop.utils import send_message
 
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 @api_view(["GET", "POST"])
 def check_cart_list(request):
