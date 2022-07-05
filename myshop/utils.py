@@ -20,7 +20,7 @@ def getCategoryid(mystr: str) -> int:
     return id
 
 
-def send_message(mydict: dict) -> None:
+def send_message(mydict: dict, _type: str= telebot.TYPE_ORDERS) -> None:
     """
         This function sends a message to telegram channel
     """
@@ -36,7 +36,13 @@ def send_message(mydict: dict) -> None:
         text += f"<b>Customer Name: {obj.name}</b>\n"
         text += f"<b>Customer Phone: {obj.phone}</b>\n"
         text += f"<b>Product Name: {product.name}</b>\n"
-        telebot.send_message(text)
+        
+        context: dict = {
+            "text": text,
+            "_type": _type
+        }
+        
+        telebot.send_message(**context)
 
 
 def getHostName(link) -> str:

@@ -16,6 +16,7 @@ from myshop.utils import send_message
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+
 @api_view(["GET", "POST"])
 def check_cart_list(request):
     print(request.data)
@@ -29,7 +30,7 @@ def loginView(request) -> None:
 def homeView(request) -> object:
     likes: Likes = Likes.objects.filter(
         user=request.user, liked=True).select_related("products")
-    
+    sms._add_sms_contact(name="Muhammadali", phone_number=99888351717)
     categories = Categories.objects.all()
     day_recommends = Products.objects.filter(
         category=Categories.KUN_TAKLIFLARI)  # kunning eng yaxhi takliflari

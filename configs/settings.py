@@ -26,7 +26,10 @@ INSTALLED_APPS = [
     "debug_toolbar",
 
     'myshop',
+    'users'
 ]
+
+AUTH_USER_MODEL = 'users.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -120,12 +123,16 @@ MYSERVICE: dict = {
     'telebot': {
         'base_url': env.str('TELEBOT_URL'),
         'token': env.str('TELEBOT_TOKEN'),
-        'chat_id': env.str('TELEBOT_CHAT_ID')
+        'chat_id': {
+            "chat_id_orders": env.str('TELEBOT_CHAT_ID_ORDERS'),
+            "chat_id_warnings": env.str('TELEBOT_CHAT_ID_WARNINGS'),
+        }
     },
     'sms_service': {
         'base_url': env.str('SMS_URL'),
         'email': env.str('SMS_EMAIL'),
         'password': env.str('SMS_PASSWORD'),
+        'group': env.str('SMS_GROUP'),
     }
 }
 

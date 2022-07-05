@@ -16,7 +16,7 @@ class Products(models.Model):
         verbose_name="Chegirma", default=0, blank=True)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="category")
     image_450_200 = models.ImageField(
-        verbose_name='450x200', blank=True, default="images/banner_1.jpg")
+        verbose_name='450x200', blank=True, default="banner_1.jpg")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     

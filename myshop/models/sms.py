@@ -2,4 +2,6 @@ from django.db import models
 
 
 class SMSClient(models.Model):
-    token = models.CharField(max_length=617, blank=False, null=True)
+    AUTH_TOKEN_LEN = 617
+    
+    token = models.CharField(max_length=817, blank=False, null=True)
