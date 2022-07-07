@@ -5,13 +5,16 @@ backports.zoneinfo==0.2.1
 boto3==1.21.34
 botocore==1.24.34
 certifi==2022.6.15
+cffi==1.15.1
 charset-normalizer==2.0.12
+cryptography==37.0.4
 Deprecated==1.2.13
 dj-database-url==0.5.0
 dj-static==0.0.6
 Django==3.2.12
 django-debug-toolbar==3.2.4
 django-heroku==0.3.1
+django-redis==5.2.0
 django-storages==1.12.3
 djangorestframework==3.13.1
 environs==9.5.0
@@ -23,6 +26,7 @@ packaging==21.3
 Pillow==9.1.0
 psycopg2==2.9.3
 pycodestyle==2.8.0
+pycparser==2.21
 pyparsing==3.0.7
 python-dateutil==2.8.2
 python-dotenv==0.20.0
