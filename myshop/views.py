@@ -9,12 +9,11 @@ from myshop.models.products import Likes
 from myshop.models.products import Products
 from myshop.models.categories import Categories
 
-from myshop.libs.sms import sms
-from myshop.libs.redis import redis
 from myshop.utils import send_message
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+
 
 
 @api_view(["GET", "POST"])
@@ -23,14 +22,9 @@ def check_cart_list(request):
     return Response(request.data)
 
 
-def loginView(request) -> None:
-    return render(request, 'myshop/my-account.html')
-
-
 def homeView(request) -> object:
     likes: Likes = Likes.objects.filter(
-        user=request.user, liked=True).select_related("products")
-    sms._add_sms_contact(name="Muhammadali", phone_number=99888351717)
+        user_id=request.user.id, liked=True).select_related("products")
     categories = Categories.objects.all()
     day_recommends = Products.objects.filter(
         category=Categories.KUN_TAKLIFLARI)  # kunning eng yaxhi takliflari
@@ -39,7 +33,7 @@ def homeView(request) -> object:
     the_most_popular = Products.objects.filter(
         category=Categories.ENG_MASHHUR_MAHSULOTLAR)[:4]  # eng mashhur mahsulotlar
     _all_products = Products.objects.all()  # all products
-
+    
     context = {
         "best_seller": best_seller,
         "day_recommends": day_recommends,

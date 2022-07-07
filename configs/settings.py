@@ -79,7 +79,7 @@ DATABASES = {
 }
 
 LOGFILE_PATH = "./"
-LOG_LEVEL = env.str('LOG_LEVEL', 'INFO')
+LOG_LEVEL = env.str('LOG_LEVEL', 'ERROR')
 
 LOGGING = {
     'version': 1,
@@ -116,9 +116,10 @@ LOGGING = {
 
 MYSERVICE: dict = {
     'redis': {
-        'db': env.str('REDIS_DB'), 
+        'db': env.str('REDIS_DB',0), 
         'host': env.str('REDIS_HOST'),
         'port': env.str('REDIS_PORT'),
+        'password': env.str('REDIS_PASS', None),
     },
     'telebot': {
         'base_url': env.str('TELEBOT_URL'),
@@ -133,8 +134,21 @@ MYSERVICE: dict = {
         'email': env.str('SMS_EMAIL'),
         'password': env.str('SMS_PASSWORD'),
         'group': env.str('SMS_GROUP'),
+        'callback_url': env.str('SMS_CALLBACK_URL'),
     }
 }
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": env.str('REDIS_URL'),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
 
 CACHE_TTL = 60 * 10
 

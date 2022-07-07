@@ -4,7 +4,6 @@ from .views import faqView
 from .views import likeView
 from .views import homeView
 from .views import shopView
-from .views import loginView
 from .views import aboutView
 from .views import addCartView
 from .views import myCartView
@@ -34,6 +33,5 @@ urlpatterns = [
     path('by-category/<int:id>/', categoryView, name='category'),
     
     # my-account
-    path('my-account/', loginView, name='my-account'),
     path("check_cart_list", check_cart_list, name="check_cart_list")
 ]

@@ -83,13 +83,23 @@
           <div class="col-xl-4 col-lg-5 col-md-8 col-sm-8">
             <div class="header-action">
               <div class="block-userlink">
-                <a class="icon-link" href="{% url 'my-account' %}">
-                  <i class="flaticon-user"></i>
-                  <span class="text">
-                    <span class="sub">Kirish </span>
-                    Mening profilim
-                  </span>
-                </a>
+                {% if user.is_authenticated %}
+                  <a class="icon-link" href="{% url 'logout' %}">
+                    <i class="flaticon-user"></i>
+                    <span class="text">
+                      <span class="sub">Chiqish</span>
+                      {{user.first_name}}
+                    </span>
+                  </a>
+                {% else %}
+                  <a class="icon-link" href="{% url 'my-account' %}">
+                    <i class="flaticon-user"></i>
+                    <span class="text">
+                      <span class="sub">Kirish </span>
+                      Mening profilim
+                    </span>
+                  </a>
+                {% endif %}
               </div>
               <div class="block-wishlist action">
                 <a class="icon-link" href="{% url 'wishlist' %}">

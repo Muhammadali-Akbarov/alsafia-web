@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>
+		{% if page == 'login' %}
+			Login
+		{% else %}
+			Register
+		{% endif %}
+	</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="{% static 'users/image/png' %}" href="{% static 'login/images/icons/favicon.icon' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'login/vendor/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login/vendor/animate/animate.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login/vendor/css-hamburgers/hamburgers.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login/vendor/animsition/css/animsition.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login/vendor/select2/select2.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login/vendor/daterangepicker/daterangepicker.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login/css/main.css' %}">
+	<meta name="robots" content="noindex, follow">
+</head>
+
+<body>
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url({% static "login/images/bg-01.jpg" %});">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				{% if page == 'login' %}
+					{% include 'users/sections/login.html' %}
+				
+				{% elif page == 'confirm' %}
+					{% include 'users/sections/confirm.html' %}
+				{% else %}
+					{% include 'users/sections/register.html' %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div id="dropDownSelect1"></div>
+
+	<script src="{% static 'login/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'login/vendor/animsition/js/animsition.min.js' %}"></script>
+	<script src="{% static 'login/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'login/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'login/vendor/select2/select2.min.js' %}"></script>
+	<script src="{% static 'login/vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'login/vendor/daterangepicker/daterangepicker.js' %}"></script>
+	<script src="{% static 'login/vendor/countdowntime/countdowntime.js' %}"></script>
+	<script src="{% static 'login/js/main.js' %}"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-23581568-13');
+	</script>
+	<script defer
+		src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194"
+		integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw=="
+		data-cf-beacon='{"rayId":"72615ddb6a4e8b2d","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.6.0","si":100}'
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
