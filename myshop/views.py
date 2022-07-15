@@ -11,15 +11,6 @@ from myshop.models.categories import Categories
 
 from myshop.utils import send_message
 
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-
-
-
-@api_view(["GET", "POST"])
-def check_cart_list(request):
-    print(request.data)
-    return Response(request.data)
 
 
 def homeView(request) -> object:

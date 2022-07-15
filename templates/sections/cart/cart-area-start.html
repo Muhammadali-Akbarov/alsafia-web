@@ -1,115 +1,144 @@
 {% load static %}
 <!-- cart-area-start -->
 <section class="cart-area pt-120 pb-120">
-    <div class="container">
-        <div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form id="cart-form">
+          <div class="table-content table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="product-thumbnail">Rasmlari</th>
+                  <th class="cart-product-name">Mahsulot</th>
+                  <th class="product-price">Narxi</th>
+                  <th class="product-quantity">Soni</th>
+                  {% comment %}
+                  <th class="product-subtotal">Total</th>
+                  {% endcomment %}
+                  <th class="product-remove">O'chirish</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                <tr class="cart-item__info">
+                  <td class="product-thumbnail">
+                    <a href="shop-details.html"
+                      ><img src="{{item.imageURL}}" alt="{{item.name}}"
+                    /></a>
+                  </td>
+                  <td class="product-name">
+                    <a href="shop-details.html">{{item.name}}</a>
+                  </td>
+                  <td class="product-price">
+                    <span class="amount">${{item.price}}</span>
+                  </td>
+                  <td class="product-price">
+                    <div class="cart-plus-minus">
+                      <input inputmode=”numeric” class="remove-arrow" type="number" value=1 />
+                    </div>
+                  </td>
+                  <td class="product-remove">
+                    <a href="#"><i class="fa fa-times"></i></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
             <div class="col-12">
-                <form action="#">
-                    <div class="table-content table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="product-thumbnail">Rasmlari</th>
-                                    <th class="cart-product-name">Mahsulot</th>
-                                    <th class="product-price">Narxi</th>
-                                    <th class="product-quantity">Soni</th>
-                                    {% comment %} <th class="product-subtotal">Total</th> {% endcomment %}
-                                    <th class="product-remove">O'chirish</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in items %}
-                                <tr class="cart-item__info">
-                                    <td class="product-thumbnail"><a href="shop-details.html"><img
-                                                src="{{item.imageURL}}" alt="{{item.name}}"></a></td>
-                                    <td class="product-name"><a href="shop-details.html">{{item.name}}</a></td>
-                                    <td class="product-price"><span class="amount">${{item.price}}</span></td>
-                                    <td class="product-price">
-                                        <div class="cart-plus-minus"><input type="text" value="1">
-                                           
-                                        </div>
-                                    </td>
-                                    <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="coupon-all">
-                                
-                                <div class="coupon2">
-                                    
-                                    <button class="tp-btn-h1" name="update_cart" type="submit">Yangilash</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-5">
-                            <div class="cart-page-total">
-                                <h2>Cart totals</h2>
-                                <ul class="mb-20">
-                                    <li>Jami <span style="margin-left: 4px;">UZS</span><span id="overAllSum">{{sum}}</span></li>
-                                </ul>
-                                <a id="submit_to_check" class="tp-btn-h1">Proceed to checkout</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+              <div class="coupon-all">
+                <div class="coupon2">
+                  <button class="tp-btn-h1" name="update_cart">
+                    Yangilash
+                  </button>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-5">
+              <div class="cart-page-total">
+                <h2>Cart totals</h2>
+                <ul class="mb-20">
+                  <li>
+                    Jami <span style="margin-left: 4px">UZS</span
+                    ><span id="overAllSum">{{sum}}</span>
+                  </li>
+                </ul>
+                <button id="submit_to_check" type="submit" class="tp-btn-h1"
+                  >Proceed to checkout</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </section>
 <script>
-    const baseUrl = "check_cart_list";
-    const allProducts = document.querySelectorAll(".cart-item__info");
-    const products = [];
-    
-    function submit_function () {
-        var overAllPrice = document.querySelector("#overAllSum");
-        console.log(overAllPrice)
-
-        for (let i = 0; i < allProducts.length; i++) {
-            let name = allProducts[i].querySelector(".product-name").textContent;
-            let price = allProducts[i].querySelector(".amount").textContent.slice(1);
-            let count = allProducts[i].querySelector("input").value;
-            let product = {};
-
-            product['name'] = name;
-            product['price'] = price;
-            product['count'] = count;
-            products.push(product);
-        };
-        console.log(products);
-        console.log(overAllPrice.textContent);
-
-        fetch(baseUrl, {
-            method: "POST",
-            body: JSON.stringify({
-                "products": products,
-                "over_all_price": overAllPrice
-            }),
-            headers: {
-                'Content-type': 'application/json'
-            }
-        }).then(
-            function (response) {
-                if (response.ok) {
-                    console.log(response.json());
-                    return response.json();
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
                 }
-                return Promise.reject(response)
             }
-        ).catch(function (error) {
-        console.warn('Something went wrong.', error);
-        });
-    };
+        }
+        return cookieValue;
+    }
+  const allProducts = document.querySelectorAll(".cart-item__info");
+  const overAllSum = document.querySelector("#overAllSum").textContent.trim();
+  const submit_btn = document.querySelector("#submit_to_check");
+  const form = document.getElementById("cart-form")
+  
+  const products = [];
 
-    const submit_btn = document.querySelector("#submit_to_check");
-    submit_btn.addEventListener("click", submit_function)
-    
+  allProducts.forEach((el) => {
+    const name = el.querySelector(".product-name").textContent.trim();
+    const price = el.querySelector(".product-price").textContent.trim();
+    const count = el.querySelector("input").value;
+
+    const product = { name, price, count };
+
+    products.push(product);
+  });
+
+  function submit_function() {
+    fetch("http://127.0.0.1:8000/v1/cart-check/", {
+      method: "POST",
+      body: JSON.stringify({
+        products: products,
+        over_all_price: overAllSum,
+      }),
+      headers: {
+        "Accept": "application/json",
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken')
+      },
+    })
+      .then(function (response) {
+        if (response.ok) {
+          console.log(response.json());
+          return response;
+        }
+        return Promise.reject(response);
+      })
+      .catch(function (error) {
+        console.warn("Something went wrong.", error);
+      });
+  }
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    submit_function();
+  })
+  //submit_btn.addEventListener("click", submit_function);
 </script>
 
 <!-- cart-area-end -->
