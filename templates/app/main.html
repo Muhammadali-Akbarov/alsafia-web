@@ -27,7 +27,16 @@
    <body>
     {% include 'preloader/preloader.html' %}
     {% include 'sections/body/header.html' %}
-
+    {% if messages %}
+    <center>
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><h2 style="color: #be7b07;">{{ message }}</h2> </li>
+        {% endfor %}
+    </ul>
+   </center>
+    {% endif %}
+    
         {% block content %}
         {% endblock content %}
     {% include 'sections/body/cta-area-start.html' %}

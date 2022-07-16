@@ -47,43 +47,15 @@
                 </div>
                 <div class="product-action">
                   <a href="#{{item.name}}" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModal{{item.id}}">
-                    <i class="fal fa-eye"></i>
-                    <i class="fal fa-eye"></i>
-                  </a>
-                  <a href="{% url 'likes' item.id %}" class="icon-box icon-box-1">
-                    <i class="fal fa-heart"></i>
-                    <i class="fal fa-heart"></i>
-                  </a>
-                  <a href="#" class="icon-box icon-box-1">
-                    <i class="fal fa-layer-group"></i>
-                    <i class="fal fa-layer-group"></i>
-                  </a>
                 </div>
               </div>
               <div class="product__content-3">
                 <h6>
                   <a href="product-details.html">{{item.name}}</a>
                 </h6>
-                <div class="rating mb-5">
-                  <ul>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                  </ul>
-                  <span>(01 review)</span>
-                </div>
+                <center>
+                  <img style="width: 50%;" src="https://telegra.ph/file/c6afe8ef4cb87d386a529.png" alt="">
+                </center>
                 <div class="price mb-10">
                   <span>${{item.price}}</span>
                 </div>
@@ -129,71 +101,33 @@
                           <div class="product__review d-sm-flex">
                             
                             <div class="rating rating__shop mb-10 mr-30">
-                              <ul>
-                                <li>
-                                  <a href="#"><i class="fa fa-star"></i></a>
-                                </li>
-                                <li>
-                                  <a href="#"><i class="fa fa-star"></i></a>
-                                </li>
-                                <li>
-                                  <a href="#"><i class="fa fa-star"></i></a>
-                                </li>
-                                <li>
-                                  <a href="#"><i class="fa fa-star"></i></a>
-                                </li>
-                                <li>
-                                  <a href="#"><i class="fa fa-star"></i></a>
-                                </li>
-                              </ul>
-                            </div>
-                            <div class="product__add-review mb-15">
-                              <span>99 reviews</span>
+                              <center>
+                                <img style="width: 50%;" src="https://telegra.ph/file/c6afe8ef4cb87d386a529.png" alt="">
+                              </center>
                             </div>
                           </div>
                           <div class="product__price">
-                            <span>Narxi: ${{item.price}}</span>
+                            {% load humanize %}
+                            <span>Narxi: {{item.price|floatformat:0|intcomma}} UZS</span>
                           </div>
                           <div class="product__modal-des mt-20 mb-15">
                             <p>
                               {{item.description}}
                             </p>
                           </div>
-                          <div class="product__stock mb-20">
-                            <span class="mr-10">Availability :</span>
-                            <span>9999 in stock</span>
-                          </div>
                           <div class="product__modal-form">
                             <form action="#">
                               <div class="pro-quan-area d-lg-flex align-items-center">
-                                <div class="product-quantity mr-20 mb-25">
-                                  <div class="cart-plus-minus p-relative">
-                                    <input type="text" value="1" />
-                                  </div>
-                                </div>
                                 <div class="pro-cart-btn mb-25">
-                                  <button class="cart-btn" type="submit">
-                                    Add to cart
-                                  </button>
+                                  <a href="{% url 'shop-detail' item.id %}" class="cart-btn" type="submit">
+                                    Buyurtma berish
+                                  </a>
+                                  <a href="{% url 'add-cart' item.id%}" class="cart-btn" type="submit">
+                                    Savatchaga+
+                                  </a>
                                 </div>
                               </div>
                             </form>
-                          </div>
-                          <div class="product__stock mb-30">
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  <span class="sku mr-10">SKU:</span>
-                                  <span>{{item.name}}</span></a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <span class="cat mr-10">Kategoriya:</span>
-                                  <span>{{item.category.name}}</span></a>
-                              </li>
-                              <li>
-                              </li>
-                            </ul>
                           </div>
                         </div>
                       </div>
@@ -208,36 +142,4 @@
         </div>
       </div>
     </div>
-    <!-- <div class="tp-pagination text-center">
-    <div class="row">
-      <div class="col-xl-12">
-        <div class="basic-pagination pt-30 pb-30">
-          <nav>
-            <ul>
-              <li>
-                <a href="shop.html" class="active">1</a>
-              </li>
-              <li>
-                <a href="shop.html">2</a>
-              </li>
-              <li>
-                <a href="shop.html">3</a>
-              </li>
-              <li>
-                <a href="shop.html">5</a>
-              </li>
-              <li>
-                <a href="shop.html">6</a>
-              </li>
-              <li>
-                <a href="shop.html">
-                  <i class="fal fa-angle-double-right"></i>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </div> -->
   </div>

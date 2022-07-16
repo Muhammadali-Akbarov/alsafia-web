@@ -1,6 +1,9 @@
+from uuid import uuid4
+
 from django.db.models import Sum
 from django.conf import settings
 from django.shortcuts import render
+from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
@@ -11,11 +14,11 @@ from myshop.models.categories import Categories
 
 from myshop.utils import send_message
 
+from myshop.libs.telegram import telebot
 
 
 def homeView(request) -> object:
-    likes: Likes = Likes.objects.filter(
-        user_id=request.user.id, liked=True).select_related("products")
+    
     categories = Categories.objects.all()
     day_recommends = Products.objects.filter(
         category=Categories.KUN_TAKLIFLARI)  # kunning eng yaxhi takliflari
@@ -30,15 +33,34 @@ def homeView(request) -> object:
         "day_recommends": day_recommends,
         "the_most_popular": the_most_popular,
         "categories": categories,
-        "likes": likes,
-        "all_products": _all_products
+        "all_products": _all_products,
     }
+    context["order_history"] = 0
+    context["cartProductsCount"] = 0
+    
+    if request.user.is_authenticated:
+        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        if cartProducts:
+            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
+            context["cardItems"]=cartProducts.products.all()
+            context["cartProductsCount"]=cartProducts.products.count()
+        
 
     return render(request, 'myshop/index.html', context)
 
 
 def aboutView(request):
-    return render(request, 'myshop/about.html')
+    context: dict = {}
+    
+    context["order_history"] = 0
+    context["cartProductsCount"] =  0
+    
+    if request.user.is_authenticated:
+        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        context["cardItems"]=cartProducts.products.all()
+        context["cartProductsCount"]=cartProducts.products.count()
+        
+    return render(request, 'myshop/about.html', context)
 
 
 def shopView(request):
@@ -46,6 +68,16 @@ def shopView(request):
 
 
 def shopDetailView(request, id) -> Products:
+    context: dict = {}
+    
+    context["order_history"] = 0
+    context["cartProductsCount"] =  0
+    
+    if request.user.is_authenticated:
+        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        context["cardItems"]=cartProducts.products.all()
+        context["cartProductsCount"]=cartProducts.products.count()
+    
     items: Products = Products.objects.get(id=id)
     context: dict = {
         "items": items
@@ -54,31 +86,66 @@ def shopDetailView(request, id) -> Products:
     return render(request, 'myshop/shop-detail.html', context)
 
 
-def myWishlistView(request) -> Likes:
-    likes: Likes = Likes.objects.filter(user=request.user).select_related("products").filter(liked=True)
-    context: dict = {
-        'likes': likes
-    }
-
+@login_required(login_url='my-account')
+def myWishlistView(request):
+    context: dict = {}
+    
+    context["order_history"] = 0
+    context["cartProductsCount"] =  0
+    
+    if request.user.is_authenticated:
+        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        context["cardItems"]=cartProducts.products.all()
+        context["cartProductsCount"]=cartProducts.products.count()
+        
     return render(request, 'myshop/wishlist.html', context)
 
 
+@login_required(login_url='my-account')
 def myCartView(request):
-    cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-    context: dict = {
-        "items": cartProducts.products.all(),
-        "sum": cartProducts.products.aggregate(Sum('price')).get('price__sum')
-    }
+    context: dict = {}
+    
+    context["order_history"] = 0
+    context["cartProductsCount"] =  0
+    
+    if request.user.is_authenticated:
+        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        context["cardItems"]=cartProducts.products.all()
+        context["cartProductsCount"]=cartProducts.products.count()
+        
+        if cartProducts:
+            context['items'] = cartProducts.products.all()
+            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
     
     return render(request, 'myshop/cart.html', context)
 
 
 def contactView(request):
-    return render(request, 'myshop/contact.html')
+    context: dict = {}
+    
+    context["order_history"] = 0
+    context["cartProductsCount"] =  0
+    
+    if request.user.is_authenticated:
+        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        context["cardItems"]=cartProducts.products.all()
+        context["cartProductsCount"]=cartProducts.products.count()
+        
+    return render(request, 'myshop/contact.html', context)
 
 
 def faqView(request):
-    return render(request, 'myshop/faq.html')
+    context: dict = {}
+    
+    context["order_history"] = 0
+    context["cartProductsCount"] =  0
+    
+    if request.user.is_authenticated:
+        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        context["cardItems"]=cartProducts.products.all()
+        context["cartProductsCount"]=cartProducts.products.count()
+        
+    return render(request, 'myshop/faq.html', context)
 
 
 def categoryView(request, id: int) -> object:
@@ -123,7 +190,20 @@ def likeView(request, id: int) -> None:
     return redirect('category', request.META['HTTP_REFERER'][34:-1])
 
 
+@login_required(login_url='my-account')
+def removeCartView(request, id: int) -> None:
+    cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+    if cartProducts:
+        cartProducts.products.get(id=id).delete()
+        messages.add_message(request, messages.INFO, 'Savatchadan muofaqqiyatli o\'chirildi ✅')
+    
+    return redirect('home')
+
+
+@login_required(login_url='my-account')
 def addCartView(request, id: int) -> None:
+    messages.add_message(request, messages.INFO, 'Savatchaga muofaqqiyatli qo\'shildi ✅')
+    
     product: Products = Products.objects.get(id=id)
     cart,_ = Cart.objects.get_or_create(user=request.user)
     cart.products.add(product)
@@ -132,3 +212,28 @@ def addCartView(request, id: int) -> None:
         return redirect('home')
     
     return redirect('shop-detail', product.id)
+
+
+def orderView(request):
+    if request.method == 'POST':
+        price: int = 0
+        text: str = ""
+        text += f"<b>ID</b>: {uuid4()}\n\n"
+        text += f"Haridor ismi: {request.user.first_name}\n"
+        text += f"Haridor Raqami: {request.user.phone}\n\n"
+        
+        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        for product in cartProducts.products.all():
+            price += product.price
+            text += f"{product.name} - {product.price} UZS\n"
+        
+        cartProducts.delete()
+        text += F"Jami - {price} UZS"
+        telebot.send_message(text, telebot.TYPE_ORDERS)
+        
+    return redirect('thanks')
+
+
+def thanksView(request):
+    return render(request, 'thanks/index.html')
+

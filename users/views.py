@@ -72,21 +72,25 @@ def registerView(request) -> dict:
             context['first_name'] = request.POST.get('name')
             context['phone'] = request.POST.get('phone_number').replace("+", "")
             
-            resp: dict = sms._add_sms_contact(**context)
             
-            if resp.get('status') == sms.STATUS_SUCCESS:
-                code: str = generate_code()
-                context['eskiz_id'] = resp.get('data').get('contact_id')
-                user: User = User.objects.create(**context)
-                resp: dict = sms._send_verify_message(user.phone, code)
-                user.eskiz_code = code
-                
+            code: str = generate_code()
+            user: User = User.objects.create(**context)
+            with transaction.atomic():
                 if user is not None:
-                    login(request, user)
+                    user.is_verified = False
+                    sms._send_verify_message(user.phone, code)
                     user.save()
-                    return redirect('confirm')
+                    context: dict = {
+                        "request": request,
+                        "user": user,
+                        "code": code,
+                        }
+                login(**context)
+                
+                return redirect('confirm')
             
         except Exception as e:
+            print(f"Error during registeration {e}")
             logger.error(f"Error during registeration {e}")
             pass
 
@@ -99,7 +103,7 @@ def verifyView(request) -> None:
     code = request.POST.get('code')
     session_id: str = request.COOKIES.get('sessionid')
     checked: bool = redis._check_code_in_redis(session_id, code)
-    print(checked)
+    
     try:
         if checked:
             user: User = User.objects.get(id=request.user.id, is_deleted=False)

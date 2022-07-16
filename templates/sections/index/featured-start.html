@@ -30,7 +30,7 @@
             <div class="product__item product__item-d">
               <div class="product__thumb fix">
                 <div class="product-image w-img">
-                  <a href="{% url 'shop-detail' 1 %}">
+                  <a data-bs-toggle="modal" data-bs-target="#productModal{{item.id}}">
                     <img src="{{item.imageURL}}" alt="{{item.name}}" />
                   </a>
                 </div>
@@ -39,160 +39,103 @@
                     <i class="fal fa-eye"></i>
                     <i class="fal fa-eye"></i>
                   </a>
-                  <a href="{% url 'likes' item.id %}" class="icon-box icon-box-1">
-                    <i class="fal fa-heart"></i>
-                    <i class="fal fa-heart"></i>
-                  </a>
-                  <a href="#" class="icon-box icon-box-1">
-                    <i class="fal fa-layer-group"></i>
-                    <i class="fal fa-layer-group"></i>
-                  </a>
                 </div>
               </div>
               <div class="product__content-3">
                 <h6>
-                  <a href="{% url 'shop-detail' 2 %}">{{item.name}}</a>
+                   <a data-bs-toggle="modal" data-bs-target="#productModal{{item.id}}">{{item.name}}</a>
                 </h6>
+                
                 <div class="rating mb-5">
-                  <ul>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                  </ul>
-                  <span>(01 review)</span>
+                  <center>
+                    <img style="width: 50%;" src="https://telegra.ph/file/c6afe8ef4cb87d386a529.png" alt="">
+                  </center>
+                  <span></span>
                 </div>
+              
                 <div class="price mb-10">
-                  <span>${{item.price}}</span>
+                  {% load humanize %}
+                    <span>Narxi: {{item.price|floatformat:0|intcomma}} UZS</span>
                 </div>
               </div>
               <div class="product__add-cart-s text-center">
                 <button type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
-                  Add to Cart
+                  Savatchaga qo'shish
                 </button>
                 <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100"
                   data-bs-toggle="modal" data-bs-target="#productModal{{item.id}}">
-                  Quick View
+                  Batafsil
                 </button>
               </div>
             </div>
           </div>
-          <!-- shop modal start -->
-          <div class="modal fade" id="productModal{{item.id}}" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered product__modal" role="document">
-              <div class="modal-content">
-                <div class="product__modal-wrapper p-relative">
-                  <div class="product__modal-close p-absolute">
-                    <button data-bs-dismiss="modal"><i class="fal fa-times"></i></button>
-                  </div>
-                  <div class="product__modal-inner">
-                    <div class="row">
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="product__modal-box">
-                          <div class="tab-content" id="modalTabContent">
-                            <div class="tab-pane fade show active" id="nav1" role="tabpanel" aria-labelledby="nav1-tab">
-                              <div class="product__modal-img w-img">
-                                <img src="{{item.imageURL}}" alt="" />
-                              </div>
-                            </div>
+                   <!-- shop modal start -->
+                   <div class="modal fade" id="productModal{{item.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered product__modal" role="document">
+                      <div class="modal-content">
+                        <div class="product__modal-wrapper p-relative">
+                          <div class="product__modal-close p-absolute">
+                            <button data-bs-dismiss="modal"><i class="fal fa-times"></i></button>
                           </div>
-                        </div>
-                      </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="product__modal-content">
-                          <h4>
-                            <a href="{% url 'shop-detail' 3 %}"><p>{{item.name}}</p></a>
-                          </h4>
-                          
-                          <div class="product__review d-sm-flex">
-                            
-                            <div class="rating rating__shop mb-10 mr-30">
-                              <ul>
-                                <li>
-                                  <a href="#"><i class="fa fa-star"></i></a>
-                                </li>
-                                <li>
-                                  <a href="#"><i class="fa fa-star"></i></a>
-                                </li>
-                                <li>
-                                  <a href="#"><i class="fa fa-star"></i></a>
-                                </li>
-                                <li>
-                                  <a href="#"><i class="fa fa-star"></i></a>
-                                </li>
-                                <li>
-                                  <a href="#"><i class="fa fa-star"></i></a>
-                                </li>
-                              </ul>
-                            </div>
-                            <div class="product__add-review mb-15">
-                              <span>99 reviews</span>
-                            </div>
-                          </div>
-                          <div class="product__price">
-                            <span>Narxi: ${{item.price}}</span>
-                          </div>
-                          <div class="product__modal-des mt-20 mb-15">
-                            <p>
-                              {{item.description}}
-                            </p>
-                          </div>
-                          <div class="product__stock mb-20">
-                            <span class="mr-10">Availability :</span>
-                            <span>9999 in stock</span>
-                          </div>
-                          <div class="product__modal-form">
-                            <form action="#">
-                              <div class="pro-quan-area d-lg-flex align-items-center">
-                                <div class="product-quantity mr-20 mb-25">
-                                  <div class="cart-plus-minus p-relative">
-                                    <input type="text" value="1" />
+                          <div class="product__modal-inner">
+                            <div class="row">
+                              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="product__modal-box">
+                                  <div class="tab-content" id="modalTabContent">
+                                    <div class="tab-pane fade show active" id="nav1" role="tabpanel" aria-labelledby="nav1-tab">
+                                      <div class="product__modal-img w-img">
+                                        <img src="{{item.imageURL}}" alt="" />
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
-                                <div class="pro-cart-btn mb-25">
-                                  <button class="cart-btn" type="submit">
-                                    Add to cart
-                                  </button>
+                              </div>
+                              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="product__modal-content">
+                                  <h4>
+                                    <a href="product-details.html"><p>{{item.name}}</p></a>
+                                  </h4>
+                                  
+                                  <div class="product__review d-sm-flex">
+                                    
+                                    <div class="rating rating__shop mb-10 mr-30">
+                                      <center>
+                                        <img style="width: 50%;" src="https://telegra.ph/file/c6afe8ef4cb87d386a529.png" alt="">
+                                      </center>
+                                    </div>
+                                  </div>
+                                  <div class="product__price">
+                                    {% load humanize %}
+                                    <span>Narxi: {{item.price|floatformat:0|intcomma}} UZS</span>
+                                  </div>
+                                  <div class="product__modal-des mt-20 mb-15">
+                                    <p>
+                                      {{item.description}}
+                                    </p>
+                                  </div>
+                                  <div class="product__modal-form">
+                                    <form action="#">
+                                      <div class="pro-quan-area d-lg-flex align-items-center">
+                                        <div class="pro-cart-btn mb-25">
+                                          <a href="{% url 'shop-detail' item.id %}" class="cart-btn" type="submit">
+                                            Buyurtma berish
+                                          </a>
+                                          <a href="{% url 'add-cart' item.id%}" class="cart-btn" type="submit">
+                                            Savatchaga+
+                                          </a>
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
                                 </div>
                               </div>
-                            </form>
-                          </div>
-                          <div class="product__stock mb-30">
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  <span class="sku mr-10">SKU:</span>
-                                  <span>{{item.name}}</span></a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <span class="cat mr-10">Kategoriya:</span>
-                                  <span>{{item.category.name}}</span></a>
-                              </li>
-                              <li>
-                              </li>
-                            </ul>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- shop modal end -->
+                  <!-- shop modal end -->
           {% endfor %}
         </div>
       </div>

@@ -50,14 +50,6 @@
                     <i class="fal fa-eye"></i>
                     <i class="fal fa-eye"></i>
                   </a>
-                  <a href="{% url 'likes' item.id %}" class="icon-box icon-box-1">
-                    <i class="fal fa-heart"></i>
-                    <i class="fal fa-heart"></i>
-                  </a>
-                  <a href="#" class="icon-box icon-box-1">
-                    <i class="fal fa-layer-group"></i>
-                    <i class="fal fa-layer-group"></i>
-                  </a>
                 </div>
               </div>
               <div class="product__content-3">
@@ -85,7 +77,7 @@
                   <span>(01 review)</span>
                 </div>
                 <div class="price mb-10">
-                  <span>${{item.price}}</span>
+                  <span>{{item.price}}</span>
                 </div>
               </div>
               <div class="product__add-cart-s text-center">

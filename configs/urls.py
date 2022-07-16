@@ -9,7 +9,6 @@ from django.views.static import serve
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myshop.urls')),
-    path('v1/', include('api.urls')),
     path('users/', include('users.urls')),
     
     # thirt-part-apps
