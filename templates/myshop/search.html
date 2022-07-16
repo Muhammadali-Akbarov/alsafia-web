@@ -1,0 +1,21 @@
+{% extends 'app/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'sections/index/offcanvas.html'%}
+<main>
+    {% include 'sections/index/feature-area-start.html'%}
+    <center>
+        {% include 'sections/category/category-area-start.html' %}
+        {% if products == None %}
+            <h1>Hozircha bunday mahsulot mavjud emas</h1>
+        {% endif %}
+    </center>
+  
+    {% include 'sections/index/shop-modal-start.html'%}
+    
+</main>
+{% endblock %}
+

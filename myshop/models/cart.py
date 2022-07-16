@@ -8,7 +8,7 @@ User = get_user_model()
 
 
 class Cart(models.Model):
-    user     = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
+    user     = models.ForeignKey(User, related_name='user', on_delete=models.DO_NOTHING)
     products = models.ManyToManyField(Products,blank=True, related_name='products')
     
     @property

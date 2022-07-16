@@ -33,7 +33,8 @@
                     <a href="shop-details.html">{{item.name}}</a>
                   </td>
                   <td class="product-price">
-                    <span class="amount">{{item.price}} UZS</span>
+                    {% load humanize %}
+                      <span>{{item.price|floatformat:0|intcomma}} UZS</span>
                   </td>
                   <td class="product-remove">
                     <a href="{% url 'remove-cart' item.id %}"><i class="fa fa-times"></i></a>
@@ -59,7 +60,8 @@
                 <ul class="mb-20">
                   <li>
                     Jami <span style="margin-left: 4px">UZS</span
-                    ><span id="overAllSum">{{sum}}</span>
+                    ><span id="overAllSum">{% load humanize %}
+                      <span>{{sum|floatformat:0|intcomma}} UZS</span></span>
                   </li>
                 </ul>
                 

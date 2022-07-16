@@ -57,36 +57,23 @@
                   <a href="product-details.html">{{item.name}}</a>
                 </h6>
                 <div class="rating mb-5">
-                  <ul>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-star"></i></a>
-                    </li>
-                  </ul>
-                  <span>(01 review)</span>
+                 <center>
+                  <img style="width: 40%;" src="https://telegra.ph/file/c6afe8ef4cb87d386a529.png" alt="">
+                 </center>
+                 
                 </div>
                 <div class="price mb-10">
-                  <span>{{item.price}}</span>
+                  {% load humanize %}
+                    <span>Narxi: {{item.price|floatformat:0|intcomma}} UZS</span>
                 </div>
               </div>
               <div class="product__add-cart-s text-center">
-                <button type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
-                  Add to Cart
-                </button>
+                <a href="{% url 'add-cart' item.id%}" type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+                  Savatchaga qo'shish
+                </a>
                 <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100"
                   data-bs-toggle="modal" data-bs-target="#productModal{{item.id}}">
-                  Quick View
+                  Batafsil
                 </button>
               </div>
             </div>

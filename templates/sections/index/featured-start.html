@@ -59,9 +59,9 @@
                 </div>
               </div>
               <div class="product__add-cart-s text-center">
-                <button type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+                <a href="{% url 'add-cart' item.id%}" type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
                   Savatchaga qo'shish
-                </button>
+                </a>
                 <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100"
                   data-bs-toggle="modal" data-bs-target="#productModal{{item.id}}">
                   Batafsil

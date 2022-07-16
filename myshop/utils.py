@@ -1,10 +1,14 @@
 import re
+from unicodedata import category
 import requests
+
+from django.db.models import Q
 
 from myshop.libs.sms import sms
 from myshop.libs.telegram import telebot
 
 from myshop.models.products import Products
+from myshop.models.categories import Categories
 from myshop.models.customer import CustomerModel
 
 
@@ -46,8 +50,31 @@ def send_message(mydict: dict, _type: str= telebot.TYPE_ORDERS) -> None:
 
 
 def getHostName(link) -> str:
+    """Returns the host name"""
     p: str = re.compile("^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:\.)?([^:\/?\n]+)")
     r: str = requests.get(link)
     domain: str = p.match(r.url).group(1)
     
     return domain
+
+
+def searchHelper(request) -> dict:
+    """Returns a list of products"""
+    search_query: str = ""
+    
+    if request.GET.get('search_query'):
+        search_query = request.GET.get('search_query')
+    
+    category: str = Categories.objects.filter(
+        name__icontains=search_query
+    )
+    
+    products: list = Products.objects.distinct().filter(
+        Q(name__icontains=search_query) |
+        Q(description__icontains=search_query) |
+        Q(price__icontains=search_query)|
+        Q(category__in=category)
+    )
+    
+    return products, search_query
+

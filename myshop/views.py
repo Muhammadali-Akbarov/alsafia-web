@@ -1,3 +1,4 @@
+from itertools import product
 from uuid import uuid4
 
 from django.db.models import Sum
@@ -8,12 +9,11 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
 from myshop.models.cart import Cart
-from myshop.models.products import Likes
 from myshop.models.products import Products
 from myshop.models.categories import Categories
 
 from myshop.utils import send_message
-
+from myshop.utils import searchHelper
 from myshop.libs.telegram import telebot
 
 
@@ -50,53 +50,77 @@ def homeView(request) -> object:
 
 
 def aboutView(request):
+    categories = Categories.objects.all()
     context: dict = {}
     
     context["order_history"] = 0
     context["cartProductsCount"] =  0
+    context['categories'] = categories
     
     if request.user.is_authenticated:
         cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        context["cardItems"]=cartProducts.products.all()
-        context["cartProductsCount"]=cartProducts.products.count()
+        if cartProducts:
+            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
+            context["cardItems"]=cartProducts.products.all()
+            context["cartProductsCount"]=cartProducts.products.count()
         
     return render(request, 'myshop/about.html', context)
 
 
 def shopView(request):
-    return render(request, 'myshop/shop.html')
-
-
-def shopDetailView(request, id) -> Products:
+    categories = Categories.objects.all()
     context: dict = {}
     
     context["order_history"] = 0
     context["cartProductsCount"] =  0
+    context['categories'] = categories
     
     if request.user.is_authenticated:
         cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        context["cardItems"]=cartProducts.products.all()
-        context["cartProductsCount"]=cartProducts.products.count()
+        if cartProducts:
+            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
+            context["cardItems"]=cartProducts.products.all()
+            context["cartProductsCount"]=cartProducts.products.count()
+            
+    return render(request, 'myshop/shop.html', context)
+
+
+def shopDetailView(request, id) -> Products:
+    categories = Categories.objects.all()
+    context: dict = {}
+    
+    context["order_history"] = 0
+    context["cartProductsCount"] =  0
+    context['categories'] = categories
+    
+    if request.user.is_authenticated:
+        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        if cartProducts:
+            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
+            context["cardItems"]=cartProducts.products.all()
+            context["cartProductsCount"]=cartProducts.products.count()
     
     items: Products = Products.objects.get(id=id)
-    context: dict = {
-        "items": items
-    }
+    context["items"]=items
 
     return render(request, 'myshop/shop-detail.html', context)
 
 
 @login_required(login_url='my-account')
 def myWishlistView(request):
+    categories = Categories.objects.all()
     context: dict = {}
     
     context["order_history"] = 0
     context["cartProductsCount"] =  0
+    context['categories'] = categories
     
     if request.user.is_authenticated:
         cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        context["cardItems"]=cartProducts.products.all()
-        context["cartProductsCount"]=cartProducts.products.count()
+        if cartProducts:
+            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
+            context["cardItems"]=cartProducts.products.all()
+            context["cartProductsCount"]=cartProducts.products.count()
         
     return render(request, 'myshop/wishlist.html', context)
 
@@ -142,23 +166,61 @@ def faqView(request):
     
     if request.user.is_authenticated:
         cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        context["cardItems"]=cartProducts.products.all()
-        context["cartProductsCount"]=cartProducts.products.count()
+        if cartProducts:
+            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
+            context["cardItems"]=cartProducts.products.all()
+            context["cartProductsCount"]=cartProducts.products.count()
         
     return render(request, 'myshop/faq.html', context)
 
 
-def categoryView(request, id: int) -> object:
+def searchView(request) -> list:
+    products, _ = searchHelper(request)
+    categories = Categories.objects.all()
+    
+    context: dict = {}
+    context['products'] = None
+    context["order_history"] = 0
+    context["cartProductsCount"] =  0
+    context['categories'] = categories
+    
+    if len(products) > 0:
+        context['products'] = products
+    
+    if request.user.is_authenticated:
+        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        if cartProducts:
+            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
+            context["cardItems"]=cartProducts.products.all()
+            context["cartProductsCount"]=cartProducts.products.count()
+       
+    return render(request, 'myshop/search.html', context)
+    
+
+
+def categoryView(request, id: int) -> list:
+    categories = Categories.objects.all()
+    
+    context: dict = {}
+    context["order_history"] = 0
+    context["cartProductsCount"] = 0
+    context['categories'] = categories
+    
+    if request.user.is_authenticated:
+        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        if cartProducts:
+            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
+            context["cardItems"]=cartProducts.products.all()
+            context["cartProductsCount"]=cartProducts.products.count()
+    
     if id == 0:
         products = Products.objects.all()
     
     if id > 0:
         products = Products.objects.filter(category_id=id)
     
-    context: dict = {
-        "products": products
-    }
-    
+    context['products'] = products
+
     return render(request, 'myshop/by_category.html', context)
 
 
@@ -175,26 +237,13 @@ def sendMessageView(request) -> None:
         return redirect('shop-detail', product_id)
 
 
-def likeView(request, id: int) -> None:
-    item, _ = Likes.objects.only('liked').get_or_create(products_id=id, user=request.user)
-    
-    if item.liked:
-        item.delete()
-    
-    if not item.liked:
-        item.isTrue()
-    
-    if request.META['SERVER_NAME'] in settings.ALLOWED_HOSTS:
-        return redirect('home')
-    
-    return redirect('category', request.META['HTTP_REFERER'][34:-1])
-
 
 @login_required(login_url='my-account')
 def removeCartView(request, id: int) -> None:
     cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
     if cartProducts:
-        cartProducts.products.get(id=id).delete()
+        cartItem = cartProducts.products.get(id=id)
+        cartProducts.products.remove(cartItem)
         messages.add_message(request, messages.INFO, 'Savatchadan muofaqqiyatli o\'chirildi ✅')
     
     return redirect('home')

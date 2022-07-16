@@ -30,12 +30,6 @@ class Products(models.Model):
             url = ""
         return url
     
-    @property
-    def isLiked(self) -> bool:
-        """This function for to return isLiked bool"""
-        return Likes.objects.only('liked').get(products_id=self.id)
-    
-    
     def save(self, *args, **kwargs) -> None:
         if not self.slug:
             self.slug = slugify(self.name)
@@ -44,17 +38,3 @@ class Products(models.Model):
 
     def __str__(self) -> str:
         return self.name
-
-
-class Likes(models.Model):
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    products = models.ForeignKey('Products', on_delete=models.DO_NOTHING)
-    liked = models.BooleanField(default=False, null=True, blank=True)
-    
-    def isTrue(self):
-        self.liked = True
-        self.save()
-    
-    @property
-    def isLiked(self):
-        return self.liked
