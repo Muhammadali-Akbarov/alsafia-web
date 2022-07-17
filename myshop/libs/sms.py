@@ -74,19 +74,8 @@ class SMSClient:
             "api_path": self.__AUTH_LOGIN
         }
         token: str = self.__request(**context).get('data').get('token')
+        sms_model.objects.get_or_create(token=token)
         
-        if len(token) <= sms_model.AUTH_TOKEN_LEN:
-            try:
-                sms_model.objects.get_or_create(token=token)
-            
-            except Exception as e:
-                context: dict = {
-                    "text": f"{self.__AUTH_TOKEN_ERROR}\n{e}",
-                    "_type": telebot.TYPE_WARNINGS
-                }
-
-                telebot.send_message(**context)
-
         return self.__request(**context)
 
     def __refresh_token(self) -> dict:
