@@ -10,7 +10,7 @@ DEBUG = False
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1', '0.0.0.0', '159.223.230.186']
+ALLOWED_HOSTS = ['.herokuapp.com','.alsafia.uz', 'localhost', '127.0.0.1', '0.0.0.0', '137.184.35.117']
 
 SECRET_KEY = 'django-insecure-0w#^%&_+8=#hqbxqa-&ygw7*-)r+q+pb8$r2)7-3!_tj6vysiq'
 
