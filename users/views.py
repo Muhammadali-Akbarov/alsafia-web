@@ -10,6 +10,7 @@ from django.contrib.auth import logout
 
 from myshop.libs.sms import sms
 from myshop.libs.redis import redis
+from myshop.libs.telegram import telebot
 
 from users import login
 from users.models import User
@@ -72,8 +73,28 @@ def registerView(request) -> dict:
             context['first_name'] = request.POST.get('name')
             context['phone'] = request.POST.get('phone_number').replace("+", "")
             
-            
             code: str = generate_code()
+            
+            try:
+                user: User = User.objects.get(phone=context['phone'])
+                
+                if user.is_authenticated and user.is_verified:
+                    return redirect('home')
+            
+                sms._send_verify_message(user.phone, code)
+                context: dict = {
+                    "user": user,
+                    "code": code,
+                    "request": request,
+                    }
+                if user.is_authenticated and user.is_verified == False:
+                    login(**context)
+                    return redirect('confirm')
+            
+            except User.DoesNotExist:
+                logger.info("User does not exist")
+            
+            
             user: User = User.objects.create(**context)
             with transaction.atomic():
                 if user is not None:
@@ -85,13 +106,17 @@ def registerView(request) -> dict:
                         "user": user,
                         "code": code,
                         }
-                login(**context)
+                    login(**context)
                 
                 return redirect('confirm')
             
-        except Exception as e:
-            print(f"Error during registeration {e}")
-            logger.error(f"Error during registeration {e}")
+        except Exception as err:
+            context: dict = {
+                "text": err,
+                "_type": telebot.TYPE_WARNINGS
+            }
+            telebot.send_message(**context)
+            logger.error(f"Error during registeration {err}")
             pass
 
     return render(request, 'users/login.html')

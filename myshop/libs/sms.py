@@ -74,10 +74,11 @@ class SMSClient:
             "api_path": self.__AUTH_LOGIN
         }
         token: str = self.__request(**context).get('data').get('token')
+        
         if len(token) <= sms_model.AUTH_TOKEN_LEN:
             try:
                 sms_model.objects.get_or_create(token=token)
-
+            
             except Exception as e:
                 context: dict = {
                     "text": f"{self.__AUTH_TOKEN_ERROR}\n{e}",
@@ -158,20 +159,26 @@ class SMSClient:
             "headers": self.headers,
             "api_path": self.__AUTH_SEND_VERIF_CODE
         }
-        return self.__request(**context)
+        resp = self.__request(**context)
+        
+        return resp
     
-    
-    @staticmethod
-    def get_sms_client_token() -> str:
+    def get_sms_client_token(self) -> str:
         """This method returns token from database"""
-        return sms_model.objects.only('token').last().token
-    
-    
+        try:
+            token: str = sms_model.objects.only('token').last().token
+              
+        except Exception as err:
+            context: dict = {
+                "text": err,
+                "_type": telebot.TYPE_WARNINGS
+            }
+            telebot.send_message(**context)
+            self._auth()
         
-        
-        
+        return token
     
-    
+
 sms = SMSClient(
     **settings.MYSERVICE.get('sms_service')
 )

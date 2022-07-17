@@ -46,6 +46,7 @@ def login(request, user, backend=None, code: str = None) -> None:
     request.session[SESSION_KEY] = user._meta.pk.value_to_string(user)
     request.session[BACKEND_SESSION_KEY] = backend
     request.session[HASH_SESSION_KEY] = session_auth_hash
+    
     redis._set_verify_code(request.session._SessionBase__session_key, code)
     if hasattr(request, 'user'):
         request.user = user
