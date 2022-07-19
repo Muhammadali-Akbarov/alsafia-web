@@ -26,6 +26,6 @@ Live website - https://alsafia-uzb.herokuapp.com/ <hr><br>
 * Deployment to heroku
 
 #Our social group <br>
-*In Discord  https://discord.gg/q9eFzrfX
+* In Discord  https://discord.gg/q9eFzrfX
 
 
