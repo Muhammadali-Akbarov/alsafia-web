@@ -1,5 +1,5 @@
 # About Alsafia project
-An open source social media platform and public forum for questions and discussions, built for developers.
+An open source social media platform and public forum for questions and discussions, built for developers. <br>
 Live website - https://alsafia-uzb.herokuapp.com/ <hr><br>
 <img src="./static/logo.png">
 
@@ -25,7 +25,7 @@ Live website - https://alsafia-uzb.herokuapp.com/ <hr><br>
 * Database Design and Models with Postgresql
 * Deployment to heroku
 
-#Our social group
+#Our social group <br>
 *In Discord  https://discord.gg/q9eFzrfX
 
 
