@@ -1,7 +1,7 @@
 # About Alsafia project
 An open source social media platform and public forum for questions and discussions, built for developers. <br>
 Live website - https://alsafia-uzb.herokuapp.com/ <hr><br>
-<img src="./static/logo.png">
+<img src="./staticfiles/alsafia1.jpg">
 
 
 # Installation
