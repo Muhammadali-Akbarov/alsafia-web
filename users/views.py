@@ -66,6 +66,8 @@ def registerView(request) -> dict:
     if request.method == 'POST':
         context: dict = {}
         passowrd, key = cryptography_fearnet_endcoder(str(uuid4()).replace("-","")[:12])
+        print(passowrd)
+        print(key)
 
         try:
             context['key'] = key
