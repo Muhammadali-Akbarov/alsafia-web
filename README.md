@@ -27,9 +27,6 @@ Live website - https://alsafia-uzb.herokuapp.com/ <hr><br>
 
 # Our social group <br>
 * In Discord  https://discord.gg/q9eFzrfX
-<<<<<<< HEAD
-* others
-=======
->>>>>>> e49756f353693c1c24bd5b3b5d88238ba5b17d7b
+
 
 
