@@ -154,6 +154,7 @@ class SMSClient:
     
     def get_sms_client_token(self) -> str:
         """This method returns token from database"""
+
         try:
             token: str = sms_model.objects.only('token').last().token
               

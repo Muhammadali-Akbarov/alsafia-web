@@ -86,3 +86,6 @@ dukamarket
 env/
 .env
 sqlite3
+venv/
+venv
+.idea
