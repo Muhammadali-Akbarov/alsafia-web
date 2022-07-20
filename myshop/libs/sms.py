@@ -157,7 +157,6 @@ class SMSClient:
 
         try:
             token: str = sms_model.objects.only('token').last().token
-            print(token)
               
         except Exception as err:
             context: dict = {
