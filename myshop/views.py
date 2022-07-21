@@ -285,6 +285,5 @@ def orderView(request):
 
 
 def thanksView(request):
-    print("thanks ishladi")
     return render(request, 'thanks/index.html')
 
