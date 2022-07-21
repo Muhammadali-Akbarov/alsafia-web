@@ -1,4 +1,6 @@
 <!-- about-area-start -->
+{% load static %}
+
 <div
 class="about-area pt-80 pb-80"
 data-background="assets/img/bg/about-bg.png"
@@ -18,7 +20,7 @@ data-background="assets/img/bg/about-bg.png"
     </div>
     <div class="col-xl-6 col-lg-6">
       <div class="about-image w-img">
-        <img src="assets/img/about/about-b.png" alt="" />
+        <img src='{% static 'assets/img/about/about-b.png' %}' alt="" />
       </div>
     </div>
   </div>
