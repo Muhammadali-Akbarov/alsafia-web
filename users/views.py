@@ -45,6 +45,7 @@ def loginView(request) -> dict:
                         "user": user,
                         "code": code,
                     }
+
                     login(**context)
                     
                     return redirect('confirm')
