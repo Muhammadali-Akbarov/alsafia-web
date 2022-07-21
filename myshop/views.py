@@ -234,7 +234,8 @@ def sendMessageView(request) -> None:
             "product_id": product_id
         })
         send_message(mydict)
-        return redirect('shop-detail', product_id)
+        # return redirect('shop-detail', product_id)
+        return redirect('thanks')
 
 
 
@@ -284,5 +285,6 @@ def orderView(request):
 
 
 def thanksView(request):
+    print("thanks ishladi")
     return render(request, 'thanks/index.html')
 
