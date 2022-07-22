@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="product__modal-des mt-20 mb-15">
                                       <p>
-                                        {{item.description}}
+                                        {{item.description|linebreaks}}
                                       </p>
                                     </div>
                                     <div class="product__modal-form">
@@ -119,7 +119,7 @@
                                             </a>
                                             <a href="{% url 'add-cart' item.id%}" class="cart-btn" type="submit">
                                               Savatchaga+
-                                            </a>
+                                            </a>  
                                           </div>
                                         </div>
                                       </form>

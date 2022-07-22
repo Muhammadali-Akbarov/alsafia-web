@@ -1,12 +1,11 @@
 import re
-from unicodedata import category
 import requests
 
 from django.db.models import Q
-
-from myshop.libs.sms import sms
+from django.db.models import Sum
 from myshop.libs.telegram import telebot
 
+from myshop.models.cart import Cart
 from myshop.models.products import Products
 from myshop.models.categories import Categories
 from myshop.models.customer import CustomerModel
@@ -77,4 +76,24 @@ def searchHelper(request) -> dict:
     )
     
     return products, search_query
+
+
+
+def categWishlistHelper(request) -> dict:
+    categories = Categories.objects.all()
+    
+    """This function returns a list of wishlists and cart for each user"""
+    myctx: dict = {}
+    myctx["order_history"] = 0
+    myctx["cartProductsCount"] = 0
+    myctx['categories'] = categories
+    
+    if request.user.is_authenticated:
+        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        if cartProducts:
+            myctx['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
+            myctx["cardItems"]=cartProducts.products.all()
+            myctx["cartProductsCount"]=cartProducts.products.count()
+    
+    return myctx
 
