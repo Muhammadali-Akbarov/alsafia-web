@@ -6,13 +6,13 @@ from environs import Env
 env = Env()
 env.read_env()
 
-DEBUG = False
+DEBUG = env.bool('DEBUG')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = ['.herokuapp.com','.alsafia.uz', 'localhost', '127.0.0.1', '0.0.0.0', '137.184.35.117']
 
-SECRET_KEY = 'django-insecure-0w#^%&_+8=#hqbxqa-&ygw7*-)r+q+pb8$r2)7-3!_tj6vysiq'
+SECRET_KEY = env.str('SECRET_KEY')
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',

@@ -28,7 +28,7 @@ urlpatterns = [
     path('about-us/', aboutView, name='about-us'),
     path('wishlist/', myWishlistView, name='wishlist'),
     path('contact-us/', contactView, name='contact-us'),
-    path('send-message/', sendMessageView, name='send-message'),
+    path('send-message/<str:id>/', sendMessageView, name='send-message'),
     
     # details
     path('add-cart/<str:id>/', addCartView, name='add-cart'),

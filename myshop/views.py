@@ -1,4 +1,3 @@
-from itertools import product
 from uuid import uuid4
 
 from django.db.models import Sum
@@ -14,123 +13,63 @@ from myshop.models.categories import Categories
 
 from myshop.utils import send_message
 from myshop.utils import searchHelper
+from myshop.utils import categWishlistHelper
 from myshop.libs.telegram import telebot
 
 
-def homeView(request) -> object:
-    
-    categories = Categories.objects.all()
+def homeView(request):
     day_recommends = Products.objects.filter(
         category=Categories.KUN_TAKLIFLARI)  # kunning eng yaxhi takliflari
     best_seller = Products.objects.filter(
         category=Categories.ENG_KOP_SOTILADIGAN)  # eng ko'p sotiladigan
     the_most_popular = Products.objects.filter(
         category=Categories.ENG_MASHHUR_MAHSULOTLAR)[:4]  # eng mashhur mahsulotlar
-    _all_products = Products.objects.all()  # all products
+    _all_products = Products.objects.exclude(category__in=[
+                    Categories.ENG_KOP_SOTILADIGAN, 
+                    Categories.KUN_TAKLIFLARI])
     
-    context = {
-        "best_seller": best_seller,
-        "day_recommends": day_recommends,
-        "the_most_popular": the_most_popular,
-        "categories": categories,
-        "all_products": _all_products,
-    }
-    context["order_history"] = 0
-    context["cartProductsCount"] = 0
+    dbctx: dict = {}
+    myctx: dict = categWishlistHelper(request)
+    dbctx["best_seller"] = best_seller
+    dbctx["all_products"] = _all_products
+    dbctx['day_recommends'] = day_recommends
+    dbctx["the_most_popular"] = the_most_popular
     
-    if request.user.is_authenticated:
-        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        if cartProducts:
-            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
-            context["cardItems"]=cartProducts.products.all()
-            context["cartProductsCount"]=cartProducts.products.count()
-        
+    context: dict = {**myctx, **dbctx}
 
     return render(request, 'myshop/index.html', context)
 
 
 def aboutView(request):
-    categories = Categories.objects.all()
-    context: dict = {}
+    context: dict = categWishlistHelper(request)
     
-    context["order_history"] = 0
-    context["cartProductsCount"] =  0
-    context['categories'] = categories
-    
-    if request.user.is_authenticated:
-        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        if cartProducts:
-            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
-            context["cardItems"]=cartProducts.products.all()
-            context["cartProductsCount"]=cartProducts.products.count()
-        
     return render(request, 'myshop/about.html', context)
 
 
 def shopView(request):
-    categories = Categories.objects.all()
-    context: dict = {}
+    context: dict = categWishlistHelper(request)
     
-    context["order_history"] = 0
-    context["cartProductsCount"] =  0
-    context['categories'] = categories
-    
-    if request.user.is_authenticated:
-        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        if cartProducts:
-            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
-            context["cardItems"]=cartProducts.products.all()
-            context["cartProductsCount"]=cartProducts.products.count()
-            
     return render(request, 'myshop/shop.html', context)
 
 
-def shopDetailView(request, id) -> Products:
-    categories = Categories.objects.all()
-    context: dict = {}
+def shopDetailView(request, id):
+    context: dict = categWishlistHelper(request)
     
-    context["order_history"] = 0
-    context["cartProductsCount"] =  0
-    context['categories'] = categories
-    
-    if request.user.is_authenticated:
-        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        if cartProducts:
-            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
-            context["cardItems"]=cartProducts.products.all()
-            context["cartProductsCount"]=cartProducts.products.count()
-    
-    items: Products = Products.objects.get(id=id)
-    context["items"]=items
+    context["items"]=Products.objects.get(id=id)
 
     return render(request, 'myshop/shop-detail.html', context)
 
 
 @login_required(login_url='my-account')
 def myWishlistView(request):
-    categories = Categories.objects.all()
-    context: dict = {}
+    context: dict = categWishlistHelper(request)
     
-    context["order_history"] = 0
-    context["cartProductsCount"] =  0
-    context['categories'] = categories
-    
-    if request.user.is_authenticated:
-        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        if cartProducts:
-            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
-            context["cardItems"]=cartProducts.products.all()
-            context["cartProductsCount"]=cartProducts.products.count()
-        
     return render(request, 'myshop/wishlist.html', context)
 
 
 @login_required(login_url='my-account')
 def myCartView(request):
-    context: dict = {}
-    
-    context["order_history"] = 0
-    context["cartProductsCount"] =  0
+    context: dict = categWishlistHelper(request)
     
     if request.user.is_authenticated:
         cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
@@ -145,73 +84,30 @@ def myCartView(request):
 
 
 def contactView(request):
-    context: dict = {}
+    context: dict = categWishlistHelper(request)
     
-    context["order_history"] = 0
-    context["cartProductsCount"] =  0
-    
-    if request.user.is_authenticated:
-        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        context["cardItems"]=cartProducts.products.all()
-        context["cartProductsCount"]=cartProducts.products.count()
-        
     return render(request, 'myshop/contact.html', context)
 
 
 def faqView(request):
-    context: dict = {}
-    
-    context["order_history"] = 0
-    context["cartProductsCount"] =  0
-    
-    if request.user.is_authenticated:
-        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        if cartProducts:
-            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
-            context["cardItems"]=cartProducts.products.all()
-            context["cartProductsCount"]=cartProducts.products.count()
-        
+    context: dict = categWishlistHelper(request)
+
     return render(request, 'myshop/faq.html', context)
 
 
 def searchView(request) -> list:
     products, _ = searchHelper(request)
-    categories = Categories.objects.all()
-    
-    context: dict = {}
-    context['products'] = None
-    context["order_history"] = 0
-    context["cartProductsCount"] =  0
-    context['categories'] = categories
+    context: dict = categWishlistHelper(request)
     
     if len(products) > 0:
         context['products'] = products
-    
-    if request.user.is_authenticated:
-        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        if cartProducts:
-            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
-            context["cardItems"]=cartProducts.products.all()
-            context["cartProductsCount"]=cartProducts.products.count()
        
     return render(request, 'myshop/search.html', context)
     
 
 
 def categoryView(request, id: int) -> list:
-    categories = Categories.objects.all()
-    
-    context: dict = {}
-    context["order_history"] = 0
-    context["cartProductsCount"] = 0
-    context['categories'] = categories
-    
-    if request.user.is_authenticated:
-        cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        if cartProducts:
-            context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
-            context["cardItems"]=cartProducts.products.all()
-            context["cartProductsCount"]=cartProducts.products.count()
+    context: dict = categWishlistHelper(request)
     
     if id == 0:
         products = Products.objects.all()
@@ -224,17 +120,16 @@ def categoryView(request, id: int) -> list:
     return render(request, 'myshop/by_category.html', context)
 
 
-def sendMessageView(request) -> None:
+def sendMessageView(request, id: str) -> None:
     if request.method == 'POST':
         mydict: dict = {}
-        product_id = request.META['HTTP_REFERER'][29:-1]
         mydict.update({
             "name": request.POST.get('name'),
             "phone": request.POST.get('phone'),
-            "product_id": product_id
+            "product_id": id
         })
         send_message(mydict)
-        return redirect('shop-detail', product_id)
+        return redirect('thanks')
 
 
 

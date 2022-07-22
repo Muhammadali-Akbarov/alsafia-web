@@ -93,7 +93,7 @@
                               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="product__modal-content">
                                   <h4>
-                                    <a href="product-details.html"><p>{{item.name}}</p></a>
+                                    <a href="{% url 'shop-detail' item.id %}"><p>{{item.name}}</p></a>
                                   </h4>
                                   
                                   <div class="product__review d-sm-flex">
@@ -110,7 +110,7 @@
                                   </div>
                                   <div class="product__modal-des mt-20 mb-15">
                                     <p>
-                                      {{item.description}}
+                                      {{item.description|linebreaks}}
                                     </p>
                                   </div>
                                   <div class="product__modal-form">

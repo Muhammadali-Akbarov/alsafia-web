@@ -10,7 +10,7 @@
                         </center>
                         <!-- cta-area-end -->
                         <div class="comment-input-box">
-                            <form action="{% url 'send-message' %}" method="post">
+                            <form action="{% url 'send-message' items.id %}" method="post">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-xxl-12">
