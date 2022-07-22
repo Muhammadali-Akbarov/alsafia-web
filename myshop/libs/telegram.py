@@ -30,9 +30,8 @@ class TeleBotClient:
             'chat_id': chat_id,
             'parse_mode': self.__PASE_MODE
         }
-        resp = requests.post(f'{self.__main_url}{self.__SEND_MESSAGE}', params)
         
-        return resp
+        return requests.post(f'{self.__main_url}{self.__SEND_MESSAGE}', params)
 
 
 telebot = TeleBotClient(

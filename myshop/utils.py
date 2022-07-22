@@ -30,7 +30,7 @@ def send_message(mydict: dict, _type: str= telebot.TYPE_ORDERS) -> None:
     """
     if mydict is not None:
         text: str = ""
-        product = Products.objects.only("name").get(id=mydict.get('product_id'))
+        product = Products.objects.only("name").get(id=mydict.get('product_id'))  #Select name ...
         
         obj = CustomerModel.objects.create(
             name=mydict.get('name'),
