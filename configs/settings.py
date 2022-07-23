@@ -10,7 +10,7 @@ DEBUG = env.bool('DEBUG')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ['alsafia-uzb.herokuapp.com','alsafia.uz', 'localhost', '127.0.0.1', '0.0.0.0', '137.184.35.117']
+ALLOWED_HOSTS = ['alsafia-uzb.herokuapp.com','alsafia.uz','www.alsafia.uz','localhost', '127.0.0.1', '0.0.0.0', '137.184.35.117']
 
 SECRET_KEY = env.str('SECRET_KEY')
 
