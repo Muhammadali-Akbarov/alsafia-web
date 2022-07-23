@@ -87,5 +87,5 @@ env/
 .env
 sqlite3
 venv/
-venv
-.idea
+.idea/
+data/

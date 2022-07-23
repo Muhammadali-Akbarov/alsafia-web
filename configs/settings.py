@@ -10,7 +10,7 @@ DEBUG = env.bool('DEBUG')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ['alsafia-uzb.herokuapp.com','alsafia.uz', 'localhost', '127.0.0.1', '0.0.0.0', '137.184.35.117']
+ALLOWED_HOSTS = ['alsafia-uzb.herokuapp.com','alsafia.uz','www.alsafia.uz','localhost', '127.0.0.1', '0.0.0.0', '137.184.35.117']
 
 SECRET_KEY = env.str('SECRET_KEY')
 
@@ -73,12 +73,12 @@ WSGI_APPLICATION = 'configs.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env.str('DB_ENGINE'),
-        'NAME': env.str('DB_NAME'),
-        'USER': env.str('DB_USER'),
-        'PASSWORD': env.str('DB_PASSWORD'),
-        'HOST': env.str('DB_HOST'),
-        'PORT': env.str('DB_PORT'),
+        'ENGINE': env.str('POSTGRES_ENGINE'),
+        'NAME': env.str('POSTGRES_DB'),
+        'USER': env.str('POSTGRES_USER'),
+        'PASSWORD': env.str('POSTGRES_PASSWORD'),
+        'HOST': env.str('POSTGRES_HOST'),
+        'PORT': env.str('POSTGRES_PORT'),
     }
 }
 
