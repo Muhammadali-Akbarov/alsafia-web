@@ -21,6 +21,7 @@ urlpatterns = [
     
     path('', homeView, name='home'),
     path('faq/', faqView, name='faq'),
+     path('order/', orderView, name='order'),
     path('my-cart/', myCartView, name='cart'),
     path('thanks/', thanksView, name='thanks'),
     path('search/', searchView, name='search'),
@@ -37,7 +38,5 @@ urlpatterns = [
     path('remove-cart/<int:id>/', removeCartView, name='remove-cart'),
     # my-account
     
-    
-    # test
-    path('order/', orderView, name='order'),
+   
 ]
