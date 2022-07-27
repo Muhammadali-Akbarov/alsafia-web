@@ -73,11 +73,12 @@ def myCartView(request):
     
     if request.user.is_authenticated:
         cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
-        context["cardItems"]=cartProducts.products.all()
-        context["cartProductsCount"]=cartProducts.products.count()
         
         if cartProducts:
             context['items'] = cartProducts.products.all()
+            context["cardItems"]=context['items']
+            context["cartProductsCount"]=cartProducts.products.count()
+        
             context['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
     
     return render(request, 'myshop/cart.html', context)
