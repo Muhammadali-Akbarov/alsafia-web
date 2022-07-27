@@ -22,19 +22,34 @@ jobs:
         run: pip3 install -r requirements.txt
       - name: Run Tests
         env:
-          DEBUG: ${{ secrets.DEBUG }}
+         DEBUG: ${{ secrets.DEBUG }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
+          SMS_URL: ${{ secrets.SMS_URL }}
+          SMS_EMAIL: ${{ secrets.SMS_EMAIL }}
+          SMS_PASSWORD: ${{ secrets.SMS_PASSWORD }}
+          SMS_GROUP: ${{ secrets.SMS_GROUP }}
+          SMS_CALLBACK_URL: ${{ secrets.SMS_CALLBACK_URL }}
+
           TELEBOT_URL: ${{ secrets.TELEBOT_URL }}
           TELEBOT_TOKEN: ${{ secrets.TELEBOT_TOKEN }}
           TELEBOT_CHAT_ID: ${{ secrets.TELEBOT_CHAT_ID }}
-          TELEBOT_CHAT_ID_WARNINGS: ${{ secrets.TELEBOT_CHAT_ID_WARNINGS }}
           TELEBOT_CHAT_ID_ORDERS: ${{ secrets.TELEBOT_CHAT_ID_ORDERS }}
+          TELEBOT_CHAT_ID_WARNINGS: ${{ secrets.TELEBOT_CHAT_ID_WARNINGS }}
+
           POSTGRES_ENGINE: ${{ secrets.POSTGRES_ENGINE }}
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
           POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+
+          REDIS_DB: ${{ secrets.REDIS_DB }}
+          REDIS_HOST: ${{ secrets.REDIS_HOST }}
+          REDIS_PORT: ${{ secrets.REDIS_PORT }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
+          REDIS_TLS_URL: ${{ secrets.REDIS_TLS_URL }}
+
         run: python3 manage.py test
 
   deploy:
