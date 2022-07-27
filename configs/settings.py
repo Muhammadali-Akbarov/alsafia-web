@@ -121,7 +121,7 @@ LOGGING = {
 MYSERVICE: dict = {
     'redis': {
         'db': env.int('REDIS_DB',0), 
-        'host': env.str('REDIS_HOST'),
+        'host': env.str('REDIS_HOST', 'localhost'),
         'port': env.int('REDIS_PORT'),
         'password': env.str('REDIS_PASS', None),
     },
