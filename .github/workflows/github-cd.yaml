@@ -61,4 +61,4 @@ jobs:
         script: |
           cd alsafia
           git pull origin master
-          systemctl restart gunicorn.service
+          supervisorctl reload
