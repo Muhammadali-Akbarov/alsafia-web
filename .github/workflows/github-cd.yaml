@@ -60,5 +60,5 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         script: |
           cd alsafia
-          git pull origin main
+          git pull origin master
           systemctl restart gunicorn.service
