@@ -17,17 +17,17 @@ jobs:
         run: pip3 install -r requirements.txt
       - name: Run Tests
         env:
-          DEBUG: ${{ env.DEBUG }}
-          SECRET_KEY: ${{ env.SECRET_KEY }}
-          TELEBOT_URL: ${{ env.TELEBOT_URL }}
-          TELEBOT_TOKEN: ${{ env.TELEBOT_TOKEN }}
-          TELEBOT_CHAT_ID: ${{ env.TELEBOT_CHAT_ID }}
-          TELEBOT_CHAT_ID_ORDERS: ${{ env.TELEBOT_CHAT_ID_ORDERS }}
-          TELEBOT_CHAT_ID_WARNINGS: ${{ env.TELEBOT_CHAT_ID_WARNINGS }}
-          POSTGRES_ENGINE: ${{ env.POSTGRES_ENGINE }}
-          POSTGRES_DB: ${{ env.POSTGRES_DB }}
-          POSTGRES_USER: ${{ env.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
-          POSTGRES_HOST: ${{ env.POSTGRES_HOST }}
-          POSTGRES_PORT: ${{ env.POSTGRES_PORT }}
+          DEBUG: ${{ secrets.DEBUG }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          TELEBOT_URL: ${{ secrets.TELEBOT_URL }}
+          TELEBOT_TOKEN: ${{ secrets.TELEBOT_TOKEN }}
+          TELEBOT_CHAT_ID: ${{ secrets.TELEBOT_CHAT_ID }}
+          TELEBOT_CHAT_ID_ORDERS: ${{ secrets.TELEBOT_CHAT_ID_ORDERS }}
+          TELEBOT_CHAT_ID_WARNINGS: ${{ secrets.TELEBOT_CHAT_ID_WARNINGS }}
+          POSTGRES_ENGINE: ${{ secrets.POSTGRES_ENGINE }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
         run: python3 manage.py test
