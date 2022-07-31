@@ -10,8 +10,19 @@ class Categories(models.Model):
     SIZ_UCHUN_TAVFSIYA=5
     BOSHQALAR=6
     ENG_MASHHUR_MAHSULOTLAR=7
-    
+    TAGLIST: list = [
+        'desktop',
+        'mobile',
+        'router',
+        'webcam',
+        'bed-alt',
+        'tshirt',
+        'hat-chef',
+        'speaker'
+    ]
+
     name = models.CharField(max_length=30, null=True, blank=False)
+    tag  = models.CharField(max_length=30, null=True, blank=False)
     
     def __str__(self):
         return str(f"ID-{self.id} {self.name}")

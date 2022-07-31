@@ -226,9 +226,10 @@
                 </nav>
               </div>
             </div>
+            
           </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-3">
+        <div class="col-lg-8 col-md-6 col-3">
           <div class="header__bottom-left d-flex d-xl-block align-items-center">
             <div class="side-menu d-lg-none mr-20">
               <button type="button" class="side-menu-btn offcanvas-toggle-btn">
@@ -238,17 +239,19 @@
             <div class="main-menu d-none d-lg-block">
               <nav>
                 <ul>
-                  <li>
-                    <a href="{% url 'about-us' %}">Biz haqimizda</a>
-                  </li>
+                  {% for item in categories %}
+                  {% if item.tag%}
+                    <li>
+                      <a href="{% url 'category' item.id %}">
+                        <i class="fal fa-{{item.tag}}"></i>
+                         {{item.name}}
+                      </a>
+                    </li>
+                    {% endif %}
+                  {% endfor %}
                 </ul>
               </nav>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-9">
-          <div class="shopeing-text text-sm-end">
-            <p>Yetkazib berish tekin!</p>
           </div>
         </div>
       </div>
