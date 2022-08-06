@@ -1,8 +1,9 @@
 from django.contrib import admin
 
+from myshop.models.cart import Cart
 from myshop.models.products import Products
 from myshop.models.categories import Categories
-
+from myshop.models.order_history import OrderHistory
 
 class ProductsAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'price', 'category',
@@ -12,4 +13,5 @@ class ProductsAdmin(admin.ModelAdmin):
 
 admin.site.register(Categories)
 admin.site.register(Products, ProductsAdmin)
-
+admin.site.register(Cart)
+admin.site.register(OrderHistory)

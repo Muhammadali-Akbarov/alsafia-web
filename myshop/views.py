@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from myshop.models.cart import Cart
 from myshop.models.products import Products
 from myshop.models.categories import Categories
+from myshop.models.order_history import OrderHistory
 
 from myshop.utils import send_message
 from myshop.utils import searchHelper
@@ -63,7 +64,13 @@ def shopDetailView(request, id):
 @login_required(login_url='my-account')
 def myWishlistView(request):
     context: dict = categWishlistHelper(request)
-    
+    if request.user.is_authenticated:
+        cartHistory: OrderHistory = OrderHistory.objects.filter(user=request.user).prefetch_related("products").first()
+        
+        if cartHistory:
+            context['items'] = cartHistory.products.all()
+            context["cardItems"]=context['items']
+            
     return render(request, 'myshop/wishlist.html', context)
 
 
@@ -103,8 +110,7 @@ def searchView(request) -> list:
     if len(products) > 0:
         context['products'] = products
        
-    return render(request, 'myshop/search.html', context)
-    
+    return render(request, 'myshop/search.html', context)  
 
 
 def categoryView(request, id: int) -> list:
@@ -122,6 +128,12 @@ def categoryView(request, id: int) -> list:
 
 
 def sendMessageView(request, id: str) -> None:
+    if request.user.is_authenticated:
+        order_history, _ = OrderHistory.objects.get_or_create(user=request.user)
+        product = Products.objects.get(id=id)
+        order_history.products.add(product)
+        order_history.save()
+            
     if request.method == 'POST':
         mydict: dict = {}
         mydict.update({
@@ -133,7 +145,6 @@ def sendMessageView(request, id: str) -> None:
         return redirect('thanks')
 
 
-
 @login_required(login_url='my-account')
 def removeCartView(request, id: int) -> None:
     cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
@@ -141,6 +152,17 @@ def removeCartView(request, id: int) -> None:
         cartItem = cartProducts.products.get(id=id)
         cartProducts.products.remove(cartItem)
         messages.add_message(request, messages.INFO, 'Savatchadan muofaqqiyatli o\'chirildi ✅')
+    
+    return redirect('home')
+
+
+@login_required(login_url='my-account')
+def removeOrderHistoryView(request, id: int) -> None:
+    cartHistory: OrderHistory = OrderHistory.objects.filter(user=request.user).prefetch_related("products").first()
+    if cartHistory:
+        cartItem = cartHistory.products.get(id=id)
+        cartHistory.products.remove(cartItem)
+        messages.add_message(request, messages.INFO, 'Buyurtmalar tarixidan muofaqqiyatli o\'chirildi ✅')
     
     return redirect('home')
 
@@ -168,8 +190,12 @@ def orderView(request):
         text += f"Haridor Raqami: {request.user.phone}\n\n"
         
         cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        order_history, _ = OrderHistory.objects.get_or_create(user=request.user)
+        
         for product in cartProducts.products.all():
             price += product.price
+            order_history.products.add(product)
+            order_history.save()
             text += f"{product.name} - {product.price} UZS\n"
         
         cartProducts.delete()

@@ -18,6 +18,7 @@ class Products(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="category")
     image_450_200 = models.ImageField(
         verbose_name='450x200', blank=True, default="banner_1.jpg")
+    is_ordered = models.BooleanField(verbose_name="is_ordered", default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     

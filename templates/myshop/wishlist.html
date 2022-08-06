@@ -20,27 +20,33 @@
                                         <th class="product-thumbnail">Images</th>
                                         <th class="cart-product-name">Product</th>
                                         <th class="product-price">Price</th>
-                                        <th class="product-quantity">Quantity</th>
+                                        {% comment %} <th class="product-quantity">Quantity</th> {% endcomment %}
                                         <!-- <th class="product-subtotal">Total</th> -->
                                         <th class="product-remove">Remove</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% if order_history == 0  %}
+                                    {% if items == 0  %}
                                         <center><h2>Sizda buyurtmalar qayd etilmagan</h2></center><br>
                                     {% else %}
-                                        {% for item in order_history %}
-                                            <tr>
-                                                <td class="product-thumbnail"><a href="shop-details.html"><img
-                                                            src="{{item.products.imageURL}}" alt=""></a></td>
-                                                <td class="product-name"><a href="shop-details.html">{{item.products.name}}</a></td>
-                                                <td class="product-price"><span class="amount">${{item.products.price}}</span></td>
-                                                <td class="product-quantity">
-                                                    <button class="tp-btn-h1" type="submit">Add To Cart</button>
-                                                </td>
-                                                <!-- <td class="product-subtotal"><span class="amount">$130.00</span></td> -->
-                                                <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                            </tr>
+                                        {% for item in items %}
+                                        <tr class="cart-item__info">
+                                          <td class="product-thumbnail">
+                                            <a href="shop-details.html"
+                                              ><img src="{{item.imageURL}}" alt="{{item.name}}"
+                                            /></a>
+                                          </td>
+                                          <td class="product-name">
+                                            <a href="shop-details.html">{{item.name}}</a>
+                                          </td>
+                                          <td class="product-price">
+                                            {% load humanize %}
+                                            <span class="amount">{{item.price|floatformat:0|intcomma}} UZS</span>
+                                          </td>
+                                          <td class="product-remove">
+                                            <a href="{% url 'remove-order-history' item.id %}"><i class="fa fa-times"></i></a>
+                                          </td>
+                                        </tr>
                                         {% endfor %}
                                     {% endif %}
                                 </tbody>
