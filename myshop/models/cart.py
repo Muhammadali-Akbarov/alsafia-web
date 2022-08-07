@@ -12,5 +12,5 @@ class Cart(models.Model):
     products = models.ManyToManyField(Products,blank=True, related_name='products')
     
     @property
-    def getotalCost(self):
+    def getTotalCost(self):
         return self.products.all().aggregate(Sum('price'))

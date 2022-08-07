@@ -9,19 +9,23 @@
     </div>
     <div class="offcanvas__content">
         <div class="offcanvas__logo mb-40">
-            <a href="index.html">
-            <img src="{% static 'assets/img/logo/logo-white.png' %}" alt="logo">
+            <a href="{% url 'home' %}">
+            <img style="background-color:blueviolet; border-radius: 5px;" width="50%" src="{% static 'assets/logo.png' %}" alt="logo">
             </a>
         </div>
         <div class="offcanvas__search mb-25">
-            <form action="#">
-                <input type="text" placeholder="What are you searching for?">
-                <button type="submit" ><i class="far fa-search"></i></button>
+            <form action="{% url 'search'%}" method="get">
+                <input
+                    class="search-input"
+                    type="text"
+                    placeholder="Qidiring..."
+                    name="search_query"
+                  />
+                <button type="submit" type="submit"><i class="far fa-search"></i></button>
             </form>
         </div>
         <div class="mobile-menu fix"></div>
         <div class="offcanvas__action">
-
         </div>
     </div>
     </div>

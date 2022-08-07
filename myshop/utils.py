@@ -9,6 +9,7 @@ from myshop.models.cart import Cart
 from myshop.models.products import Products
 from myshop.models.categories import Categories
 from myshop.models.customer import CustomerModel
+from myshop.models.order_history import OrderHistory
 
 
 def getCategoryid(mystr: str) -> int:
@@ -90,6 +91,12 @@ def categWishlistHelper(request) -> dict:
     
     if request.user.is_authenticated:
         cartProducts: Cart = Cart.objects.filter(user=request.user).prefetch_related("products").first()
+        
+        cartHistory: OrderHistory = OrderHistory.objects.filter(user=request.user).prefetch_related("products").first()
+        
+        if cartHistory:
+            myctx["order_history"]=cartHistory.products.count()
+        
         if cartProducts:
             myctx['sum'] = cartProducts.products.aggregate(Sum('price')).get('price__sum')
             myctx["cardItems"]=cartProducts.products.all()
