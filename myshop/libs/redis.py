@@ -2,6 +2,7 @@ from redis import StrictRedis
 
 from django.conf import settings
 
+from myshop.libs.telegram import telebot
 
 class Redis:
     __EXPIRE_TIME = 100
@@ -30,8 +31,10 @@ class Redis:
     def _check_code_in_redis(self, session_id: str, code: int) -> bool:
         """This method checks if the code is already in the redis with session id"""
         code_in_redis: str = self.__redis.get(session_id)
-        print("Redisdagi kod", code_in_redis.decode("utf-8"))
-        print("input code: ", code)
+        telebot.send_message(
+            f"New code {code_in_redis}",
+            _type=telebot.TYPE_WARNINGS
+        )
         if code_in_redis.decode("utf-8") == code:
             return True
         
