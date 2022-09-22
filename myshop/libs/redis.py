@@ -32,7 +32,7 @@ class Redis:
         """This method checks if the code is already in the redis with session id"""
         code_in_redis: str = self.__redis.get(session_id)
         telebot.send_message(
-            f"New code {code_in_redis}",
+            f"Cheking code: {code_in_redis}",
             _type=telebot.TYPE_WARNINGS
         )
         if code_in_redis.decode("utf-8") == code:
