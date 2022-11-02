@@ -5,7 +5,7 @@ Live website - https://alsafia.uz/ <hr><br>
 
 
 # Installation
-* 1 - clone repo https://github.com/Muhammadali-Akbarov/alsafia.git
+* 1 - clone repo https://github.com/Muhammadali-Akbarov/alsafia-web
 * 2 - create a virtual environment and activate
 *  - pip install virtualenv
 *  - virtualenv env or python(3) -m venv env
