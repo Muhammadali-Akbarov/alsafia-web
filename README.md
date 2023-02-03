@@ -1,6 +1,5 @@
 # About Alsafia project
 An open source social media platform and public forum for questions and discussions, built for developers. <br>
-Live website - https://alsafia.uz/ <hr><br>
 <img src="./staticfiles/alsafia1.jpg">
 
 
