@@ -1,6 +1,6 @@
 # About Alsafia project
 An open source social media platform and public forum for questions and discussions, built for developers. <br>
-<img src="./staticfiles/alsafia1.jpg">
+<img src="https://user-images.githubusercontent.com/79622590/216572780-c521caf3-847a-4740-b3df-141d8a45b124.png">
 
 
 # Installation
